@@ -344,14 +344,10 @@ function DataList(props) {
   };
 
   function DataListSidebar() {
-    return /*#__PURE__*/_react.default.createElement(_eui.EuiFlexItem, {
-      style: {
-        width: '50%'
-      }
-    }, /*#__PURE__*/_react.default.createElement(_eui.EuiDroppable, {
+    return /*#__PURE__*/_react.default.createElement(_eui.EuiDroppable, {
       droppableId: "DROPPABLE_AREA_COPY_1",
       cloneDraggables: true,
-      spacing: "l",
+      spacing: "s",
       grow: true
     }, list1.map(({
       content,
@@ -360,16 +356,15 @@ function DataList(props) {
       key: id,
       index: idx,
       draggableId: id,
-      spacing: "l"
-    }, /*#__PURE__*/_react.default.createElement(_eui.EuiPanel, null, content)))));
+      spacing: "s"
+    }, /*#__PURE__*/_react.default.createElement(_eui.EuiPanel, {
+      onMouseEnter: onMouseEnter,
+      onMouseLeave: onMouseLeave
+    }, content))));
   }
 
   function DataListVisualizer() {
-    return /*#__PURE__*/_react.default.createElement(_eui.EuiFlexItem, {
-      style: {
-        width: '50%'
-      }
-    }, /*#__PURE__*/_react.default.createElement(_eui.EuiDroppable, {
+    return /*#__PURE__*/_react.default.createElement(_eui.EuiDroppable, {
       droppableId: "DROPPABLE_AREA_COPY_2",
       withPanel: true,
       grow: true
@@ -380,7 +375,7 @@ function DataList(props) {
       key: id,
       index: idx,
       draggableId: id,
-      spacing: "l",
+      spacing: "s",
       isRemovable: isItemRemovable
     }, /*#__PURE__*/_react.default.createElement(_eui.EuiPanel, null, /*#__PURE__*/_react.default.createElement(_eui.EuiFlexGroup, {
       gutterSize: "none",
@@ -403,13 +398,25 @@ function DataList(props) {
       }
     }, /*#__PURE__*/_react.default.createElement(_eui.EuiFlexItem, {
       grow: false
-    }, "Drop Items Here"))));
+    }, "Drop Items Here")));
+  }
+
+  function onMouseEnter() {
+    console.log('mouse entered');
+  }
+
+  function onMouseLeave() {
+    console.log('mouse left');
   }
 
   return /*#__PURE__*/_react.default.createElement(_eui.EuiDragDropContext, {
     onDragEnd: onDragEnd,
     onDragUpdate: onDragUpdate
-  }, /*#__PURE__*/_react.default.createElement(_eui.EuiFlexGroup, null, /*#__PURE__*/_react.default.createElement(DataListSidebar, null), /*#__PURE__*/_react.default.createElement(DataListVisualizer, null)));
+  }, /*#__PURE__*/_react.default.createElement(_eui.EuiFlexGroup, null, /*#__PURE__*/_react.default.createElement(_eui.EuiFlexItem, {
+    style: {
+      width: '50px'
+    }
+  }, /*#__PURE__*/_react.default.createElement(DataListSidebar, null)), /*#__PURE__*/_react.default.createElement(_eui.EuiFlexItem, null, /*#__PURE__*/_react.default.createElement(DataListVisualizer, null))));
 }
 
 ;
@@ -498,9 +505,14 @@ var _datalist = _interopRequireDefault(__webpack_require__(/*! ./datalist */ "./
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _default = () => /*#__PURE__*/_react.default.createElement(_eui.EuiPage, null, /*#__PURE__*/_react.default.createElement(_eui.EuiPageSideBar, null, /*#__PURE__*/_react.default.createElement(_datalist.default, null)), /*#__PURE__*/_react.default.createElement(_eui.EuiPageBody, {
-  component: "div"
-}, /*#__PURE__*/_react.default.createElement(_datalist.default, null)));
+var _default = () =>
+/*#__PURE__*/
+// <EuiPage>
+_react.default.createElement(_eui.EuiPageSideBar, null, /*#__PURE__*/_react.default.createElement(_datalist.default, null)) //   <EuiPageBody component="div">
+//     <DataList />
+//   </EuiPageBody>
+// </EuiPage>
+;
 
 exports.default = _default;
 module.exports = exports.default;

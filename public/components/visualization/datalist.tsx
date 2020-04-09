@@ -73,71 +73,82 @@ function DataList(props) {
 
   function DataListSidebar() {
     return (
-      <EuiFlexItem style={{ width: '50%' }}>
-        <EuiDroppable
-          droppableId="DROPPABLE_AREA_COPY_1"
-          cloneDraggables={true}
-          spacing="l"
-          grow>
-          {list1.map(({ content, id }, idx) => (
-            <EuiDraggable key={id} index={idx} draggableId={id} spacing="l">
-              <EuiPanel>{content}</EuiPanel>
-            </EuiDraggable>
-          ))}
-        </EuiDroppable>
-      </EuiFlexItem>
+      <EuiDroppable
+        droppableId="DROPPABLE_AREA_COPY_1"
+        cloneDraggables={true}
+        spacing="s"
+        grow>
+        {list1.map(({ content, id }, idx) => (
+          <EuiDraggable key={id} index={idx} draggableId={id} spacing="s">
+            <EuiPanel
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
+            >{content}</EuiPanel>
+          </EuiDraggable>
+        ))}
+      </EuiDroppable>
     )
   }
 
   function DataListVisualizer() {
     return (
-      <EuiFlexItem style={{ width: '50%' }}>
-        <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" withPanel grow>
-          {list2.length ? (
-            list2.map(({ content, id }, idx) => (
-              <EuiDraggable
-                key={id}
-                index={idx}
-                draggableId={id}
-                spacing="l"
-                isRemovable={isItemRemovable}>
-                <EuiPanel>
-                  <EuiFlexGroup gutterSize="none" alignItems="center">
-                    <EuiFlexItem>{content}</EuiFlexItem>
-                    <EuiFlexItem grow={false}>
-                      {isItemRemovable ? (
-                        <EuiIcon type="trash" color="danger" />
-                      ) : (
-                          <EuiButtonIcon
-                            iconType="cross"
-                            aria-label="Remove"
-                            onClick={() => remove('DROPPABLE_AREA_COPY_2', idx)}
-                          />
-                        )}
-                    </EuiFlexItem>
-                  </EuiFlexGroup>
-                </EuiPanel>
-              </EuiDraggable>
-            ))
-          ) : (
-              <EuiFlexGroup
-                alignItems="center"
-                justifyContent="spaceAround"
-                gutterSize="none"
-                style={{ height: '100%' }}>
-                <EuiFlexItem grow={false}>Drop Items Here</EuiFlexItem>
-              </EuiFlexGroup>
-            )}
-        </EuiDroppable>
-      </EuiFlexItem>
+      <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" withPanel grow>
+        {list2.length ? (
+          list2.map(({ content, id }, idx) => (
+            <EuiDraggable
+              key={id}
+              index={idx}
+              draggableId={id}
+              spacing="s"
+              isRemovable={isItemRemovable}>
+              <EuiPanel>
+                <EuiFlexGroup gutterSize="none" alignItems="center">
+                  <EuiFlexItem>{content}</EuiFlexItem>
+                  <EuiFlexItem grow={false}>
+                    {isItemRemovable ? (
+                      <EuiIcon type="trash" color="danger" />
+                    ) : (
+                        <EuiButtonIcon
+                          iconType="cross"
+                          aria-label="Remove"
+                          onClick={() => remove('DROPPABLE_AREA_COPY_2', idx)}
+                        />
+                      )}
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiPanel>
+            </EuiDraggable>
+          ))
+        ) : (
+            <EuiFlexGroup
+              alignItems="center"
+              justifyContent="spaceAround"
+              gutterSize="none"
+              style={{ height: '100%' }}>
+              <EuiFlexItem grow={false}>Drop Items Here</EuiFlexItem>
+            </EuiFlexGroup>
+          )}
+      </EuiDroppable>
     )
   }
 
+  function onMouseEnter() {
+    console.log('mouse entered')
+  }
+
+  function onMouseLeave() {
+    console.log('mouse left')
+  }
   return (
     <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
       <EuiFlexGroup>
-        <DataListSidebar />
-        <DataListVisualizer />
+        <EuiFlexItem style={{ width: '50px' }}>
+          <DataListSidebar />
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <DataListVisualizer />
+        </EuiFlexItem>
+
       </EuiFlexGroup>
     </EuiDragDropContext>
   );
