@@ -8,21 +8,22 @@ import {
   EuiText,
   EuiSpacer,
 } from '@elastic/eui';
+import DataList from './visualization/datalist';
 
-class EuiTabsExample extends Component {
+class EuiTabsNavigation extends Component {
   tabs: ({ id: string; name: string; content: JSX.Element; } | { id: string; name: JSX.Element; content: JSX.Element; })[];
   constructor(props) {
     super(props);
 
     this.tabs = [
       {
-        id: 'dextrose--id',
-        name: 'Dextrose',
+        id: 'dashboard--id',
+        name: 'Dashboard',
         content: (
           <Fragment>
             <EuiSpacer />
             <EuiTitle>
-              <h3>Dextrose</h3>
+              <h3>Dashboard</h3>
             </EuiTitle>
           </Fragment>
         ),
@@ -41,24 +42,15 @@ class EuiTabsExample extends Component {
         ),
       },
       {
-        id: 'hydrogen--id',
-        name: (
-          <span>
-            <EuiIcon type="heatmap" />
-            &nbsp;Hydrogen
-          </span>
-        ),
+        id: 'visualization--id',
+        name: 'visualization',
         content: (
           <Fragment>
             <EuiSpacer />
             <EuiTitle>
-              <h3>Hydrogen</h3>
+              <h3>Visualization</h3>
             </EuiTitle>
-            <EuiText>
-              Hydrogen is a chemical element with symbol H and atomic number 1.
-              With a standard atomic weight of 1.008, hydrogen is the lightest
-              element on the periodic table
-            </EuiText>
+            <DataList />
           </Fragment>
         ),
       },
@@ -98,4 +90,4 @@ class EuiTabsExample extends Component {
   }
 }
 
-export default EuiTabsExample
+export default EuiTabsNavigation

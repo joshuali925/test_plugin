@@ -220,26 +220,24 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-class EuiTabsExample extends _react.Component {
+class EuiTabsNavigation extends _react.Component {
   constructor(props) {
     super(props);
 
     _defineProperty(this, "tabs", void 0);
 
     this.tabs = [{
-      id: 'dextrose--id',
-      name: 'Dextrose',
-      content: /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_eui.EuiSpacer, null), /*#__PURE__*/_react.default.createElement(_eui.EuiTitle, null, /*#__PURE__*/_react.default.createElement("h3", null, "Dextrose")))
+      id: 'dashboard--id',
+      name: 'Dashboard',
+      content: /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_eui.EuiSpacer, null), /*#__PURE__*/_react.default.createElement(_eui.EuiTitle, null, /*#__PURE__*/_react.default.createElement("h3", null, "Dashboard")))
     }, {
       id: 'plot--id',
       name: 'Plot',
       content: /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_eui.EuiSpacer, null), /*#__PURE__*/_react.default.createElement(_eui.EuiTitle, null, /*#__PURE__*/_react.default.createElement("h3", null, "Plot")), /*#__PURE__*/_react.default.createElement(_plt.default, null))
     }, {
-      id: 'hydrogen--id',
-      name: /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(_eui.EuiIcon, {
-        type: "heatmap"
-      }), "\xA0Hydrogen"),
-      content: /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_eui.EuiSpacer, null), /*#__PURE__*/_react.default.createElement(_eui.EuiTitle, null, /*#__PURE__*/_react.default.createElement("h3", null, "Hydrogen")), /*#__PURE__*/_react.default.createElement(_eui.EuiText, null, "Hydrogen is a chemical element with symbol H and atomic number 1. With a standard atomic weight of 1.008, hydrogen is the lightest element on the periodic table"))
+      id: 'visualization--id',
+      name: 'visualization',
+      content: /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_eui.EuiSpacer, null), /*#__PURE__*/_react.default.createElement(_eui.EuiTitle, null, /*#__PURE__*/_react.default.createElement("h3", null, "Visualization")))
     }, {
       id: 'monosodium_glutammate--id',
       name: 'Monosodium Glutamate',
@@ -260,7 +258,7 @@ class EuiTabsExample extends _react.Component {
 
 }
 
-var _default = EuiTabsExample;
+var _default = EuiTabsNavigation;
 exports.default = _default;
 module.exports = exports.default;
 

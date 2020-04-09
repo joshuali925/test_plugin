@@ -22,7 +22,7 @@ import { i18n } from '@kbn/i18n';
 import { FormattedMessage, I18nProvider } from '@kbn/i18n/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import EuiTabsExample from './tabs'
+import EuiTabsNavigation from './tabs'
 
 import {
   EuiButton,
@@ -63,7 +63,7 @@ export const TestPluginApp = ({ basename, notifications, http, navigation }: Tes
           <EuiPage restrictWidth="1500px">
             <EuiPageBody>
               {/* <EuiPageContent> */}
-                <EuiTabsExample />
+                <EuiTabsNavigation />
               {/* </EuiPageContent> */}
             </EuiPageBody>
           </EuiPage>
