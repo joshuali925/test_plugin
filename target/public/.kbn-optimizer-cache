@@ -1,0 +1,66 @@
+{
+  "optimizerCacheKey": {
+    "workerConfig": {
+      "cache": true,
+      "dist": false,
+      "profileWebpack": false,
+      "repoRoot": "/home/ubuntu/project/kibana",
+      "watch": true,
+      "optimizerCacheKey": "♻",
+      "browserslistEnv": "dev"
+    },
+    "lastCommit": "e6c23ea9b2913cafd6e3aae528d4be78bcb7850d",
+    "bootstrap": "# this is only human readable for debugging, please don't try to parse this\n@kbn/babel-preset:e5ba1f36b27668945802d95e5589cb711c6b958e\n@kbn/dev-utils:0e4fc0103dfb66d5ed971a3046bc3e7ee3be8c67\n@kbn/expect:a24698de4ddb61a88eef8e92eb0b439b9581961d\n@kbn/i18n:aa0d37054c29c2905ef6900d5fd225f48cdbac2f\n@kbn/optimizer:994dad1aa26a716072a434bd468fb6e356b9024c\n@kbn/ui-shared-deps:c0f91d8f160e2d4a280a05141686aae2b4858f8e",
+    "deletedPaths": [],
+    "modifiedTimes": {}
+  },
+  "cacheKey": {
+    "spec": {
+      "type": "plugin",
+      "id": "testPlugin",
+      "entry": "./public/index",
+      "contextDir": "/home/ubuntu/project/kibana/plugins/test_plugin",
+      "sourceRoot": "/home/ubuntu/project/kibana",
+      "outputDir": "/home/ubuntu/project/kibana/plugins/test_plugin/target/public"
+    },
+    "mtimes": {
+      "/home/ubuntu/project/kibana/node_modules/css-loader/package.json": 1586369186723,
+      "/home/ubuntu/project/kibana/node_modules/object-assign/package.json": 1586369181309,
+      "/home/ubuntu/project/kibana/node_modules/plotly.js/package.json": 1586448507288,
+      "/home/ubuntu/project/kibana/node_modules/react-is/package.json": 1586369181235,
+      "/home/ubuntu/project/kibana/node_modules/react-plotly.js/node_modules/prop-types/package.json": 1586369181316,
+      "/home/ubuntu/project/kibana/node_modules/react-plotly.js/package.json": 1586448507279,
+      "/home/ubuntu/project/kibana/node_modules/style-loader/package.json": 1586369186752,
+      "/home/ubuntu/project/kibana/node_modules/webpack/package.json": 1586369186766,
+      "/home/ubuntu/project/kibana/plugins/test_plugin/common/index.ts": 1586383720049.2935,
+      "/home/ubuntu/project/kibana/plugins/test_plugin/public/application.tsx": 1586383723421.302,
+      "/home/ubuntu/project/kibana/plugins/test_plugin/public/components/app.tsx": 1586454152766.228,
+      "/home/ubuntu/project/kibana/plugins/test_plugin/public/components/plt.tsx": 1586453804097.2769,
+      "/home/ubuntu/project/kibana/plugins/test_plugin/public/components/tabs.tsx": 1586453884549.498,
+      "/home/ubuntu/project/kibana/plugins/test_plugin/public/index.scss": 1586383720049.2935,
+      "/home/ubuntu/project/kibana/plugins/test_plugin/public/index.ts": 1586383723421.302,
+      "/home/ubuntu/project/kibana/plugins/test_plugin/public/plugin.ts": 1586383723421.302,
+      "/home/ubuntu/project/kibana/plugins/test_plugin/public/types.ts": 1586383723421.302
+    }
+  },
+  "moduleCount": 26,
+  "files": [
+    "/home/ubuntu/project/kibana/node_modules/css-loader/package.json",
+    "/home/ubuntu/project/kibana/node_modules/object-assign/package.json",
+    "/home/ubuntu/project/kibana/node_modules/plotly.js/package.json",
+    "/home/ubuntu/project/kibana/node_modules/react-is/package.json",
+    "/home/ubuntu/project/kibana/node_modules/react-plotly.js/node_modules/prop-types/package.json",
+    "/home/ubuntu/project/kibana/node_modules/react-plotly.js/package.json",
+    "/home/ubuntu/project/kibana/node_modules/style-loader/package.json",
+    "/home/ubuntu/project/kibana/node_modules/webpack/package.json",
+    "/home/ubuntu/project/kibana/plugins/test_plugin/common/index.ts",
+    "/home/ubuntu/project/kibana/plugins/test_plugin/public/application.tsx",
+    "/home/ubuntu/project/kibana/plugins/test_plugin/public/components/app.tsx",
+    "/home/ubuntu/project/kibana/plugins/test_plugin/public/components/plt.tsx",
+    "/home/ubuntu/project/kibana/plugins/test_plugin/public/components/tabs.tsx",
+    "/home/ubuntu/project/kibana/plugins/test_plugin/public/index.scss",
+    "/home/ubuntu/project/kibana/plugins/test_plugin/public/index.ts",
+    "/home/ubuntu/project/kibana/plugins/test_plugin/public/plugin.ts",
+    "/home/ubuntu/project/kibana/plugins/test_plugin/public/types.ts"
+  ]
+}
