@@ -293,6 +293,46 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+class Hover extends _react.default.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isPopoverOpen: false
+    };
+  }
+
+  onHover() {
+    this.setState({
+      isPopoverOpen: !this.state.isPopoverOpen
+    });
+  }
+
+  closePopover() {
+    this.setState({
+      isPopoverOpen: false
+    });
+  }
+
+  render() {
+    const panel = /*#__PURE__*/_react.default.createElement(_eui.EuiPanel, {
+      onMouseEnter: this.onHover.bind(this),
+      onMouseLeave: this.onHover.bind(this)
+    }, this.props.content);
+
+    return /*#__PURE__*/_react.default.createElement(_eui.EuiPopover, {
+      button: panel,
+      isOpen: this.state.isPopoverOpen,
+      anchorPosition: "rightCenter",
+      closePopover: this.closePopover.bind(this)
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      style: {
+        width: '300px'
+      }
+    }, "Popover content that's wider than the default width"));
+  }
+
+}
+
 function DataList(props) {
   const [isItemRemovable, setIsItemRemovable] = (0, _react.useState)(false);
   const [list1, setList1] = (0, _react.useState)((0, _helper.makeList)(8));
@@ -357,10 +397,9 @@ function DataList(props) {
       index: idx,
       draggableId: id,
       spacing: "s"
-    }, /*#__PURE__*/_react.default.createElement(_eui.EuiPanel, {
-      onMouseEnter: onMouseEnter,
-      onMouseLeave: onMouseLeave
-    }, content))));
+    }, /*#__PURE__*/_react.default.createElement(Hover, {
+      content: content
+    }))));
   }
 
   function DataListVisualizer() {
@@ -401,21 +440,11 @@ function DataList(props) {
     }, "Drop Items Here")));
   }
 
-  function onMouseEnter() {
-    console.log('mouse entered');
-  }
-
-  function onMouseLeave() {
-    console.log('mouse left');
-  }
-
   return /*#__PURE__*/_react.default.createElement(_eui.EuiDragDropContext, {
     onDragEnd: onDragEnd,
     onDragUpdate: onDragUpdate
   }, /*#__PURE__*/_react.default.createElement(_eui.EuiFlexGroup, null, /*#__PURE__*/_react.default.createElement(_eui.EuiFlexItem, {
-    style: {
-      width: '50px'
-    }
+    grow: false
   }, /*#__PURE__*/_react.default.createElement(DataListSidebar, null)), /*#__PURE__*/_react.default.createElement(_eui.EuiFlexItem, null, /*#__PURE__*/_react.default.createElement(DataListVisualizer, null))));
 }
 

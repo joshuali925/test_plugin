@@ -16,7 +16,53 @@ import {
 } from '@elastic/eui';
 
 import { makeId, makeList } from './helper';
+import { EuiPopover } from '@elastic/eui';
 
+
+
+class Hover extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isPopoverOpen: false,
+    };
+  }
+
+  onHover() {
+    this.setState({
+      isPopoverOpen: !this.state.isPopoverOpen,
+    });
+  }
+
+  closePopover() {
+    this.setState({
+      isPopoverOpen: false,
+    });
+  }
+
+  render() {
+    const panel = (
+      <EuiPanel
+        onMouseEnter={this.onHover.bind(this)}
+        onMouseLeave={this.onHover.bind(this)}>
+        {this.props.content}
+      </EuiPanel>
+    );
+
+    return (
+      <EuiPopover
+        button={panel}
+        isOpen={this.state.isPopoverOpen}
+        anchorPosition="rightCenter"
+        closePopover={this.closePopover.bind(this)}>
+        <div style={{ width: '300px' }}>
+          Popover content that's wider than the default width
+        </div>
+      </EuiPopover>
+    );
+  }
+}
 
 function DataList(props) {
   const [isItemRemovable, setIsItemRemovable] = useState(false);
@@ -80,10 +126,7 @@ function DataList(props) {
         grow>
         {list1.map(({ content, id }, idx) => (
           <EuiDraggable key={id} index={idx} draggableId={id} spacing="s">
-            <EuiPanel
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
-            >{content}</EuiPanel>
+            <Hover content={content} />
           </EuiDraggable>
         ))}
       </EuiDroppable>
@@ -132,17 +175,10 @@ function DataList(props) {
     )
   }
 
-  function onMouseEnter() {
-    console.log('mouse entered')
-  }
-
-  function onMouseLeave() {
-    console.log('mouse left')
-  }
   return (
     <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
       <EuiFlexGroup>
-        <EuiFlexItem style={{ width: '50px' }}>
+        <EuiFlexItem grow={false}>
           <DataListSidebar />
         </EuiFlexItem>
         <EuiFlexItem>
