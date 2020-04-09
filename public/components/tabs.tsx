@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import Plt from './plt'
 
 import {
   EuiIcon,
@@ -8,7 +7,9 @@ import {
   EuiText,
   EuiSpacer,
 } from '@elastic/eui';
-import DataList from './visualization/datalist';
+
+import Plt from './plt'
+import Visualization from './visualization/visualization';
 
 class EuiTabsNavigation extends Component {
   tabs: ({ id: string; name: string; content: JSX.Element; } | { id: string; name: JSX.Element; content: JSX.Element; })[];
@@ -43,14 +44,14 @@ class EuiTabsNavigation extends Component {
       },
       {
         id: 'visualization--id',
-        name: 'visualization',
+        name: 'Visualization',
         content: (
           <Fragment>
             <EuiSpacer />
-            <EuiTitle>
+            {/* <EuiTitle>
               <h3>Visualization</h3>
-            </EuiTitle>
-            <DataList />
+            </EuiTitle> */}
+            <Visualization />
           </Fragment>
         ),
       },
@@ -69,6 +70,7 @@ class EuiTabsNavigation extends Component {
               occurring non-essential amino acids. Monosodium glutamate is found
               naturally in tomatoes, cheese and other foods.
             </EuiText>
+            <EuiText>Test here</EuiText>
           </Fragment>
         ),
       },
@@ -80,7 +82,7 @@ class EuiTabsNavigation extends Component {
     return (
       <EuiTabbedContent
         tabs={this.tabs}
-        initialSelectedTab={this.tabs[1]}
+        initialSelectedTab={this.tabs[2]}
         autoFocus="selected"
         onTabClick={tab => {
           console.log('clicked tab', tab);

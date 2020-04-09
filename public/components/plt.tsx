@@ -30,6 +30,8 @@ class Plt extends React.Component<{}, any> {
           // font: {
           //   color: "#dfe5ef"
           // },
+          plot_bgcolor: "#fafbfd",
+          paper_bgcolor: "#fafbfd",
           annotations: [
             {
               x: this.state.data[0].y.indexOf(Math.max(...this.state.data[0].y)) + 1,
