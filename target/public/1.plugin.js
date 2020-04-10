@@ -294,13 +294,13 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
 
+var _reactSplitPane = _interopRequireDefault(__webpack_require__(/*! react-split-pane */ "../../node_modules/react-split-pane/dist/index.esm.js"));
+
 var _eui = __webpack_require__(/*! @elastic/eui */ "@elastic/eui");
 
 var _dataloader = __webpack_require__(/*! ./dataloader */ "./public/components/visualization/dataloader.ts");
 
 var _hover = _interopRequireDefault(__webpack_require__(/*! ./hover */ "./public/components/visualization/hover.tsx"));
-
-var _testdata = _interopRequireDefault(__webpack_require__(/*! ../../data/testdata */ "./public/data/testdata.js"));
 
 var _plt = _interopRequireDefault(__webpack_require__(/*! ../plt */ "./public/components/plt.tsx"));
 
@@ -371,17 +371,11 @@ function DataList(props) {
     }, list1.map(({
       content,
       id
-    }, idx) =>
-    /*#__PURE__*/
-    // TODO fix width
-    _react.default.createElement(_eui.EuiDraggable, {
+    }, idx) => /*#__PURE__*/_react.default.createElement(_eui.EuiDraggable, {
       key: id,
       index: idx,
       draggableId: id,
-      spacing: "s",
-      style: {
-        width: '20%'
-      }
+      spacing: "s"
     }, /*#__PURE__*/_react.default.createElement(_hover.default, {
       content: content,
       hoverMessage: `this is the popover for item ${idx}, content = ${content}`
@@ -421,7 +415,7 @@ function DataList(props) {
     //   </EuiDraggable>
     // ))
     _react.default.createElement(_plt.default, {
-      y: _testdata.default[list2[0].content].y,
+      y: _dataloader.covidData[list2[0].content].y,
       title: list2[0].content
     }) : /*#__PURE__*/_react.default.createElement(_eui.EuiFlexGroup, {
       alignItems: "center",
@@ -435,12 +429,22 @@ function DataList(props) {
     }, "Drop Items Here")));
   }
 
-  return /*#__PURE__*/_react.default.createElement(_eui.EuiDragDropContext, {
-    onDragEnd: onDragEnd,
-    onDragUpdate: onDragUpdate
-  }, /*#__PURE__*/_react.default.createElement(_eui.EuiFlexGroup, null, /*#__PURE__*/_react.default.createElement(_eui.EuiFlexItem, {
-    grow: false
-  }, /*#__PURE__*/_react.default.createElement(DataListSidebar, null)), /*#__PURE__*/_react.default.createElement(_eui.EuiFlexItem, null, /*#__PURE__*/_react.default.createElement(DataListVisualizer, null))));
+  return (
+    /*#__PURE__*/
+    // <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
+    //   <EuiFlexGroup>
+    //     <EuiFlexItem grow={false}>
+    //       <DataListSidebar />
+    //     </EuiFlexItem>
+    //     <EuiFlexItem>
+    //       <DataListVisualizer />
+    //     </EuiFlexItem>
+    //   </EuiFlexGroup>
+    // </EuiDragDropContext>
+    _react.default.createElement(_reactSplitPane.default, {
+      split: "vertical"
+    }, /*#__PURE__*/_react.default.createElement("div", null, "hello"), /*#__PURE__*/_react.default.createElement("div", null, "world"))
+  );
 }
 
 ;
@@ -528,11 +532,7 @@ const makeFromList = list => list.map(el => {
 });
 
 exports.makeFromList = makeFromList;
-const covidData = {
-  us: _testdata.default.us.y,
-  spain: _testdata.default.spain.y,
-  italy: _testdata.default.italy.y
-};
+const covidData = _testdata.default;
 exports.covidData = covidData;
 
 /***/ }),
@@ -585,7 +585,11 @@ class Hover extends _react.default.Component {
   }
 
   render() {
-    const panel = /*#__PURE__*/_react.default.createElement(_eui.EuiPanel, {
+    const panel = /*#__PURE__*/_react.default.createElement(_eui.EuiPanel // TODO fix width
+    , {
+      style: {
+        width: '80px'
+      },
       onMouseEnter: this.onMouseEnter.bind(this),
       onMouseLeave: this.onMouseLeave.bind(this)
     }, this.props.content);

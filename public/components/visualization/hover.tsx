@@ -16,13 +16,13 @@ class Hover extends React.Component<{}, any> {
       isPopoverOpen: true,
     });
   }
-  
+
   onMouseLeave() {
     this.setState({
       isPopoverOpen: false,
     });
   }
-  
+
   closePopover() {
     this.setState({
       isPopoverOpen: false,
@@ -32,6 +32,8 @@ class Hover extends React.Component<{}, any> {
   render() {
     const panel = (
       <EuiPanel
+          // TODO fix width
+        style={{ width: '80px' }}
         onMouseEnter={this.onMouseEnter.bind(this)}
         onMouseLeave={this.onMouseLeave.bind(this)}>
         {this.props.content}

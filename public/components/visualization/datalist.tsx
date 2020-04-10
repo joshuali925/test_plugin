@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import SplitPane, { Pane } from 'react-split-pane';
+
 import {
   EuiButtonIcon,
   EuiDragDropContext,
@@ -16,7 +18,6 @@ import { makeId, makeList, makeFromList } from './dataloader';
 import Hover from './hover'
 
 import { covidData } from './dataloader';
-import allData from '../../data/testdata'
 import Plt from '../plt'
 
 
@@ -81,8 +82,7 @@ function DataList(props) {
         spacing="s"
         grow>
         {list1.map(({ content, id }, idx) => (
-          // TODO fix width
-          <EuiDraggable key={id} index={idx} draggableId={id} spacing="s" style={{ width: '20%' }}>
+          <EuiDraggable key={id} index={idx} draggableId={id} spacing="s">
             <Hover content={content} hoverMessage={`this is the popover for item ${idx}, content = ${content}`} />
           </EuiDraggable>
         ))}
@@ -119,7 +119,7 @@ function DataList(props) {
           //     </EuiPanel>
           //   </EuiDraggable>
           // ))
-          <Plt y={allData[list2[0].content].y} title={list2[0].content} />
+          <Plt y={covidData[list2[0].content].y} title={list2[0].content} />
         ) : (
             <EuiFlexGroup
               alignItems="center"
@@ -134,17 +134,20 @@ function DataList(props) {
   }
 
   return (
-    <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
-      <EuiFlexGroup>
-        <EuiFlexItem grow={false}>
-          <DataListSidebar />
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <DataListVisualizer />
-        </EuiFlexItem>
-
-      </EuiFlexGroup>
-    </EuiDragDropContext>
+    // <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
+    //   <EuiFlexGroup>
+    //     <EuiFlexItem grow={false}>
+    //       <DataListSidebar />
+    //     </EuiFlexItem>
+    //     <EuiFlexItem>
+    //       <DataListVisualizer />
+    //     </EuiFlexItem>
+    //   </EuiFlexGroup>
+    // </EuiDragDropContext>
+    <SplitPane split="vertical" >
+      <div>hello</div>
+      <div>world</div>
+    </SplitPane>
   );
 };
 
