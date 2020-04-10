@@ -1,7 +1,8 @@
-import { EuiPopover, EuiButton } from '@elastic/eui';
-import React, { Component } from 'react';
+import React from 'react';
+import { EuiPopover, EuiPanel } from '@elastic/eui';
 
-export default class extends Component {
+
+class Hover extends React.Component<{}, any> {
   constructor(props) {
     super(props);
 
@@ -10,12 +11,18 @@ export default class extends Component {
     };
   }
 
-  onButtonClick() {
+  onMouseEnter() {
     this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
+      isPopoverOpen: true,
     });
   }
-
+  
+  onMouseLeave() {
+    this.setState({
+      isPopoverOpen: false,
+    });
+  }
+  
   closePopover() {
     this.setState({
       isPopoverOpen: false,
@@ -23,25 +30,26 @@ export default class extends Component {
   }
 
   render() {
-    const button = (
-      <EuiButton
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onButtonClick.bind(this)}>
-        Show popover
-      </EuiButton>
+    const panel = (
+      <EuiPanel
+        onMouseEnter={this.onMouseEnter.bind(this)}
+        onMouseLeave={this.onMouseLeave.bind(this)}>
+        {this.props.content}
+      </EuiPanel>
     );
 
     return (
       <EuiPopover
-        button={button}
+        button={panel}
         isOpen={this.state.isPopoverOpen}
         anchorPosition="rightCenter"
         closePopover={this.closePopover.bind(this)}>
-        <div style={{ width: '300px' }}>
-          Popover content that&rsquo;s wider than the default width
+        <div style={{ width: '250px' }}>
+          {this.props.hoverMessage}
         </div>
       </EuiPopover>
     );
   }
 }
+
+export default Hover

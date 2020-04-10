@@ -8,12 +8,13 @@ import {
 
 import DataList from './datalist';
 
+// put visualization page layout here
 
 export default () => (
   // <EuiPage>
-    <EuiPageSideBar>
+    // <EuiPageSideBar>
       <DataList />
-    </EuiPageSideBar>
+    // </EuiPageSideBar>
   //   <EuiPageBody component="div">
   //     <DataList />
   //   </EuiPageBody>

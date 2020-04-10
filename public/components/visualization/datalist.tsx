@@ -8,65 +8,17 @@ import {
   EuiDroppable,
   EuiIcon,
   EuiPanel,
-} from '@elastic/eui';
-
-import {
   euiDragDropCopy,
   euiDragDropReorder,
 } from '@elastic/eui';
 
-import { makeId, makeList } from './helper';
-import { EuiPopover } from '@elastic/eui';
+import { makeId, makeList } from './dataloader';
+import Hover from './hover'
 
-
-
-class Hover extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isPopoverOpen: false,
-    };
-  }
-
-  onHover() {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
-  }
-
-  closePopover() {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  }
-
-  render() {
-    const panel = (
-      <EuiPanel
-        onMouseEnter={this.onHover.bind(this)}
-        onMouseLeave={this.onHover.bind(this)}>
-        {this.props.content}
-      </EuiPanel>
-    );
-
-    return (
-      <EuiPopover
-        button={panel}
-        isOpen={this.state.isPopoverOpen}
-        anchorPosition="rightCenter"
-        closePopover={this.closePopover.bind(this)}>
-        <div style={{ width: '300px' }}>
-          Popover content that's wider than the default width
-        </div>
-      </EuiPopover>
-    );
-  }
-}
 
 function DataList(props) {
   const [isItemRemovable, setIsItemRemovable] = useState(false);
-  const [list1, setList1] = useState(makeList(8));
+  const [list1, setList1] = useState(makeList());
   const [list2, setList2] = useState([]);
   const lists = { DROPPABLE_AREA_COPY_1: list1, DROPPABLE_AREA_COPY_2: list2 };
   const actions = {
@@ -125,8 +77,9 @@ function DataList(props) {
         spacing="s"
         grow>
         {list1.map(({ content, id }, idx) => (
-          <EuiDraggable key={id} index={idx} draggableId={id} spacing="s">
-            <Hover content={content} />
+          // TODO fix width
+          <EuiDraggable key={id} index={idx} draggableId={id} spacing="s" style={{ width: '20%' }}>
+            <Hover content={content} hoverMessage={`this is the popover for item ${idx}, content = ${content}`} />
           </EuiDraggable>
         ))}
       </EuiDroppable>

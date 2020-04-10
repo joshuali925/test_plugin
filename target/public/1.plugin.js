@@ -287,55 +287,19 @@ var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
 
 var _eui = __webpack_require__(/*! @elastic/eui */ "@elastic/eui");
 
-var _helper = __webpack_require__(/*! ./helper */ "./public/components/visualization/helper.ts");
+var _dataloader = __webpack_require__(/*! ./dataloader */ "./public/components/visualization/dataloader.ts");
+
+var _hover = _interopRequireDefault(__webpack_require__(/*! ./hover */ "./public/components/visualization/hover.tsx"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-class Hover extends _react.default.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isPopoverOpen: false
-    };
-  }
-
-  onHover() {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen
-    });
-  }
-
-  closePopover() {
-    this.setState({
-      isPopoverOpen: false
-    });
-  }
-
-  render() {
-    const panel = /*#__PURE__*/_react.default.createElement(_eui.EuiPanel, {
-      onMouseEnter: this.onHover.bind(this),
-      onMouseLeave: this.onHover.bind(this)
-    }, this.props.content);
-
-    return /*#__PURE__*/_react.default.createElement(_eui.EuiPopover, {
-      button: panel,
-      isOpen: this.state.isPopoverOpen,
-      anchorPosition: "rightCenter",
-      closePopover: this.closePopover.bind(this)
-    }, /*#__PURE__*/_react.default.createElement("div", {
-      style: {
-        width: '300px'
-      }
-    }, "Popover content that's wider than the default width"));
-  }
-
-}
-
 function DataList(props) {
   const [isItemRemovable, setIsItemRemovable] = (0, _react.useState)(false);
-  const [list1, setList1] = (0, _react.useState)((0, _helper.makeList)(8));
+  const [list1, setList1] = (0, _react.useState)((0, _dataloader.makeList)());
   const [list2, setList2] = (0, _react.useState)([]);
   const lists = {
     DROPPABLE_AREA_COPY_1: list1,
@@ -373,7 +337,7 @@ function DataList(props) {
         const destinationId = destination.droppableId;
         const result = (0, _eui.euiDragDropCopy)(lists[sourceId], lists[destinationId], source, destination, {
           property: 'id',
-          modifier: _helper.makeId
+          modifier: _dataloader.makeId
         });
         actions[sourceId](result[sourceId]);
         actions[destinationId](result[destinationId]);
@@ -392,13 +356,20 @@ function DataList(props) {
     }, list1.map(({
       content,
       id
-    }, idx) => /*#__PURE__*/_react.default.createElement(_eui.EuiDraggable, {
+    }, idx) =>
+    /*#__PURE__*/
+    // TODO fix width
+    _react.default.createElement(_eui.EuiDraggable, {
       key: id,
       index: idx,
       draggableId: id,
-      spacing: "s"
-    }, /*#__PURE__*/_react.default.createElement(Hover, {
-      content: content
+      spacing: "s",
+      style: {
+        width: '20%'
+      }
+    }, /*#__PURE__*/_react.default.createElement(_hover.default, {
+      content: content,
+      hoverMessage: `this is the popover for item ${idx}, content = ${content}`
     }))));
   }
 
@@ -455,10 +426,10 @@ module.exports = exports.default;
 
 /***/ }),
 
-/***/ "./public/components/visualization/helper.ts":
-/*!***************************************************!*\
-  !*** ./public/components/visualization/helper.ts ***!
-  \***************************************************/
+/***/ "./public/components/visualization/dataloader.ts":
+/*!*******************************************************!*\
+  !*** ./public/components/visualization/dataloader.ts ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -474,6 +445,14 @@ exports.makeList = exports.makeId = void 0;
 // export const makeId = () => htmlIdGenerator()();
 // uuid seems to have conflicts with Kibana
 // import uuid from 'uuid';
+// function htmlIdGenerator(idPrefix: string = '') {
+//   const staticUuid = uuid.v1();
+//   return (idSuffix: string = '') => {
+//     const prefix = `${idPrefix}${idPrefix !== '' ? '_' : 'i'}`;
+//     const suffix = idSuffix ? `_${idSuffix}` : '';
+//     return `${prefix}${suffix ? staticUuid : uuid.v1()}${suffix}`;
+//   };
+// }
 // temporary solution
 function uuidv4() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -484,30 +463,110 @@ function uuidv4() {
 }
 
 function htmlIdGenerator(idPrefix = '') {
-  // const staticUuid = uuid.v1();
   const staticUuid = uuidv4();
   return (idSuffix = '') => {
     const prefix = `${idPrefix}${idPrefix !== '' ? '_' : 'i'}`;
-    const suffix = idSuffix ? `_${idSuffix}` : ''; // return `${prefix}${suffix ? staticUuid : uuid.v1()}${suffix}`;
-
+    const suffix = idSuffix ? `_${idSuffix}` : '';
     return `${prefix}${suffix ? staticUuid : uuidv4()}${suffix}`;
   };
 }
 
-const makeId = () => htmlIdGenerator()();
+const makeId = () => htmlIdGenerator()(); // export const makeList = (number, start = 1) => Array.from({ length: number }, (v, k) => k + start).map(el => {
+//   return {
+//     content: `thing${el}`,
+//     id: makeId()
+//   };
+// });
+
 
 exports.makeId = makeId;
 
-const makeList = (number, start = 1) => Array.from({
-  length: number
-}, (v, k) => k + start).map(el => {
+const makeList = () => Array.from({
+  length: 8
+}, (x, i) => 2 ** (i * 2)).map(el => {
   return {
-    content: `thing${el}`,
+    content: `${el}`,
     id: makeId()
   };
-});
+}); // export const usData = makeList(allData.us.y);
+// export const spainData = makeList(allData.spain.y);
+// export const italyData = makeList(allData.italy.y);
+
 
 exports.makeList = makeList;
+
+/***/ }),
+
+/***/ "./public/components/visualization/hover.tsx":
+/*!***************************************************!*\
+  !*** ./public/components/visualization/hover.tsx ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _eui = __webpack_require__(/*! @elastic/eui */ "@elastic/eui");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+class Hover extends _react.default.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isPopoverOpen: false
+    };
+  }
+
+  onMouseEnter() {
+    this.setState({
+      isPopoverOpen: true
+    });
+  }
+
+  onMouseLeave() {
+    this.setState({
+      isPopoverOpen: false
+    });
+  }
+
+  closePopover() {
+    this.setState({
+      isPopoverOpen: false
+    });
+  }
+
+  render() {
+    const panel = /*#__PURE__*/_react.default.createElement(_eui.EuiPanel, {
+      onMouseEnter: this.onMouseEnter.bind(this),
+      onMouseLeave: this.onMouseLeave.bind(this)
+    }, this.props.content);
+
+    return /*#__PURE__*/_react.default.createElement(_eui.EuiPopover, {
+      button: panel,
+      isOpen: this.state.isPopoverOpen,
+      anchorPosition: "rightCenter",
+      closePopover: this.closePopover.bind(this)
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      style: {
+        width: '250px'
+      }
+    }, this.props.hoverMessage));
+  }
+
+}
+
+var _default = Hover;
+exports.default = _default;
+module.exports = exports.default;
 
 /***/ }),
 
@@ -528,16 +587,17 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 
-var _eui = __webpack_require__(/*! @elastic/eui */ "@elastic/eui");
-
 var _datalist = _interopRequireDefault(__webpack_require__(/*! ./datalist */ "./public/components/visualization/datalist.tsx"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// put visualization page layout here
 var _default = () =>
 /*#__PURE__*/
 // <EuiPage>
-_react.default.createElement(_eui.EuiPageSideBar, null, /*#__PURE__*/_react.default.createElement(_datalist.default, null)) //   <EuiPageBody component="div">
+// <EuiPageSideBar>
+_react.default.createElement(_datalist.default, null) // </EuiPageSideBar>
+//   <EuiPageBody component="div">
 //     <DataList />
 //   </EuiPageBody>
 // </EuiPage>
