@@ -12,13 +12,18 @@ import {
   euiDragDropReorder,
 } from '@elastic/eui';
 
-import { makeId, makeList } from './dataloader';
+import { makeId, makeList, makeFromList } from './dataloader';
 import Hover from './hover'
+
+import { covidData } from './dataloader';
+import allData from '../../data/testdata'
+import Plt from '../plt'
 
 
 function DataList(props) {
   const [isItemRemovable, setIsItemRemovable] = useState(false);
-  const [list1, setList1] = useState(makeList());
+  // const [list1, setList1] = useState(makeList());
+  const [list1, setList1] = useState(makeFromList(Object.keys(covidData)));
   const [list2, setList2] = useState([]);
   const lists = { DROPPABLE_AREA_COPY_1: list1, DROPPABLE_AREA_COPY_2: list2 };
   const actions = {
@@ -60,9 +65,8 @@ function DataList(props) {
             modifier: makeId,
           }
         );
-
-        actions[sourceId](result[sourceId]);
-        actions[destinationId](result[destinationId]);
+        actions[sourceId](result[sourceId]);  // set list1
+        actions[destinationId](result[destinationId]);  // set list2
       }
     } else if (!destination && source.droppableId === 'DROPPABLE_AREA_COPY_2') {
       remove(source.droppableId, source.index);
@@ -90,31 +94,32 @@ function DataList(props) {
     return (
       <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" withPanel grow>
         {list2.length ? (
-          list2.map(({ content, id }, idx) => (
-            <EuiDraggable
-              key={id}
-              index={idx}
-              draggableId={id}
-              spacing="s"
-              isRemovable={isItemRemovable}>
-              <EuiPanel>
-                <EuiFlexGroup gutterSize="none" alignItems="center">
-                  <EuiFlexItem>{content}</EuiFlexItem>
-                  <EuiFlexItem grow={false}>
-                    {isItemRemovable ? (
-                      <EuiIcon type="trash" color="danger" />
-                    ) : (
-                        <EuiButtonIcon
-                          iconType="cross"
-                          aria-label="Remove"
-                          onClick={() => remove('DROPPABLE_AREA_COPY_2', idx)}
-                        />
-                      )}
-                  </EuiFlexItem>
-                </EuiFlexGroup>
-              </EuiPanel>
-            </EuiDraggable>
-          ))
+          // list2.map(({ content, id }, idx) => (
+          //   <EuiDraggable
+          //     key={id}
+          //     index={idx}
+          //     draggableId={id}
+          //     spacing="s"
+          //     isRemovable={isItemRemovable}>
+          //     <EuiPanel>
+          //       <EuiFlexGroup gutterSize="none" alignItems="center">
+          //         <EuiFlexItem>{content}</EuiFlexItem>
+          //         <EuiFlexItem grow={false}>
+          //           {isItemRemovable ? (
+          //             <EuiIcon type="trash" color="danger" />
+          //           ) : (
+          //               <EuiButtonIcon
+          //                 iconType="cross"
+          //                 aria-label="Remove"
+          //                 onClick={() => remove('DROPPABLE_AREA_COPY_2', idx)}
+          //               />
+          //             )}
+          //         </EuiFlexItem>
+          //       </EuiFlexGroup>
+          //     </EuiPanel>
+          //   </EuiDraggable>
+          // ))
+          <Plt y={allData[list2[0].content].y} title={list2[0].content} />
         ) : (
             <EuiFlexGroup
               alignItems="center"

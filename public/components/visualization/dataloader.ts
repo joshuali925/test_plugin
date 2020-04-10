@@ -49,6 +49,16 @@ export const makeList = () => Array.from({ length: 8 }, (x, i) => 2 ** (i * 2)).
   };
 });
 
-// export const usData = makeList(allData.us.y);
-// export const spainData = makeList(allData.spain.y);
-// export const italyData = makeList(allData.italy.y);
+export const makeFromList = (list) => list.map(el => {
+  return {
+    content: `${el}`,
+    id: makeId()
+  };
+});
+
+
+export const covidData = {
+  us: allData.us.y,
+  spain: allData.spain.y,
+  italy: allData.italy.y,
+}

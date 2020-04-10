@@ -7,12 +7,12 @@ class Plt extends React.Component<{}, any> {
     this.state = {
       data: [
         {
-          x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-          y: Array.from({ length: 10 }, () => Math.random() * 10),
+          x: Array.from({ length: this.props.y.length }, (x, i) => i + 1),
+          y: this.props.y,
           type: 'scatter',
           mode: 'lines+markers',
           marker: { color: 'red' },
-          text: 'hello'
+          // text: 'hello'
         },
       ]
     };
@@ -24,14 +24,14 @@ class Plt extends React.Component<{}, any> {
         layout={{
           width: 600,
           height: 480,
-          title: 'A Randomly Generated Plot',
+          title: this.props.title,
           // plot_bgcolor: "#1d1e24",
           // paper_bgcolor: "#1d1e24",
           // font: {
           //   color: "#dfe5ef"
           // },
-          plot_bgcolor: "#fafbfd",
-          paper_bgcolor: "#fafbfd",
+          // plot_bgcolor: "#fafbfd",
+          // paper_bgcolor: "#fafbfd",
           annotations: [
             {
               x: this.state.data[0].y.indexOf(Math.max(...this.state.data[0].y)) + 1,
@@ -49,6 +49,11 @@ class Plt extends React.Component<{}, any> {
       />
     );
   }
+}
+Plt.defaultProps = {
+  x: Array.from({ length: 10 }, (x, i) => i + 1),
+  y: Array.from({ length: 10 }, () => Math.random() * 10),
+  title: 'A Randomly Generated Plot'
 }
 
 export default Plt
