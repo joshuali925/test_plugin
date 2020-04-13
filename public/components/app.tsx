@@ -24,24 +24,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import EuiTabsNavigation from './tabs'
 
-import {
-  EuiButton,
-  EuiHorizontalRule,
-  EuiPage,
-  EuiPageBody,
-  EuiPageContent,
-  EuiPageContentBody,
-  EuiPageContentHeader,
-  EuiPageHeader,
-  EuiTitle,
-  EuiText,
-} from '@elastic/eui';
-
 import { CoreStart } from '../../../../src/core/public';
 import { NavigationPublicPluginStart } from '../../../../src/plugins/navigation/public';
-
-import { PLUGIN_ID, PLUGIN_NAME } from '../../common';
-import { EuiTab } from '@elastic/eui';
 
 interface TestPluginAppDeps {
   basename: string;
@@ -52,22 +36,13 @@ interface TestPluginAppDeps {
 
 export const TestPluginApp = ({ basename, notifications, http, navigation }: TestPluginAppDeps) => {
   // Use React hooks to manage state.
-  
+
   // Render the application DOM.
   // Note that `navigation.ui.TopNavMenu` is a stateful component exported on the `navigation` plugin's start contract.
   return (
     <Router basename={basename}>
       <I18nProvider>
-        <>
-          <navigation.ui.TopNavMenu appName={PLUGIN_ID} showSearchBar={true} />
-          <EuiPage restrictWidth="1500px">
-            <EuiPageBody>
-              {/* <EuiPageContent> */}
-                <EuiTabsNavigation />
-              {/* </EuiPageContent> */}
-            </EuiPageBody>
-          </EuiPage>
-        </>
+          <EuiTabsNavigation />
       </I18nProvider>
     </Router >
   );
