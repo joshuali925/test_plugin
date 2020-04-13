@@ -12,9 +12,9 @@
 //   };
 // }
 
-import allData from '../../data/testdata'
+import sampleData from '../../data/sampledata'
 
-// temporary solution
+// TODO this is a temporary solution
 function uuidv4() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -57,4 +57,4 @@ export const makeFromList = (list) => list.map(el => {
 });
 
 
-export const covidData = allData;
+export const covidData = sampleData;

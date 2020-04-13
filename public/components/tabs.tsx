@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
+
 import {
   EuiIcon,
   EuiTabbedContent,
@@ -48,9 +49,6 @@ class EuiTabsNavigation extends Component {
         content: (
           <Fragment>
             <EuiSpacer />
-            {/* <EuiTitle>
-              <h3>Visualization</h3>
-            </EuiTitle> */}
             <Visualization />
           </Fragment>
         ),

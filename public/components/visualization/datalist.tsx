@@ -134,20 +134,22 @@ function DataList(props) {
   }
 
   return (
-    // <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
-    //   <EuiFlexGroup>
-    //     <EuiFlexItem grow={false}>
-    //       <DataListSidebar />
-    //     </EuiFlexItem>
-    //     <EuiFlexItem>
-    //       <DataListVisualizer />
-    //     </EuiFlexItem>
-    //   </EuiFlexGroup>
-    // </EuiDragDropContext>
-    <SplitPane split="vertical" >
-      <div>hello</div>
-      <div>world</div>
-    </SplitPane>
+    <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
+      <EuiFlexGroup>
+        <SplitPane split="vertical" defaultSize="10%">
+          <div>
+            <EuiFlexItem grow={false}>
+              <DataListSidebar />
+            </EuiFlexItem>
+          </div>
+          <div>
+            <EuiFlexItem>
+              <DataListVisualizer />
+            </EuiFlexItem>
+          </div>
+        </SplitPane>
+      </EuiFlexGroup>
+    </EuiDragDropContext>
   );
 };
 
