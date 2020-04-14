@@ -1,14 +1,7 @@
 {
   "name": "kibana-test-plugin",
-  "private": true,
   "version": "8.0.0",
   "branch": "master",
-  "types": "./kibana.d.ts",
-  "tsdocMetadata": "./build/tsdoc-metadata.json",
-  "build": {
-    "number": 8467,
-    "sha": "6cb7fec4e154faa0a4a3fee4b33dfef91b9870d9"
-  },
   "homepage": "https://github.com/joshuali925/kibana-plugins",
   "kibana": {
     "version": "8.0.0"
