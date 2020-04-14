@@ -18,7 +18,7 @@ import { makeId, makeList, makeFromList } from './dataloader';
 import Hover from './hover'
 
 import { covidData } from './dataloader';
-import Plt from '../plt'
+import Plt from './plt'
 
 
 function DataList(props) {
@@ -136,18 +136,12 @@ function DataList(props) {
   return (
     <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
       <EuiFlexGroup>
-        <SplitPane split="vertical" defaultSize="10%">
-          <div>
             <EuiFlexItem grow={false}>
               <DataListSidebar />
             </EuiFlexItem>
-          </div>
-          <div>
             <EuiFlexItem>
               <DataListVisualizer />
             </EuiFlexItem>
-          </div>
-        </SplitPane>
       </EuiFlexGroup>
     </EuiDragDropContext>
   );

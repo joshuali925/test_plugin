@@ -22,8 +22,8 @@ class Plt extends React.Component<{}, any> {
       <Plot
         data={this.state.data}
         layout={{
-          width: 600,
-          height: 480,
+          height: this.props.height,
+          width: this.props.width,
           title: this.props.title,
           // plot_bgcolor: "#1d1e24",
           // paper_bgcolor: "#1d1e24",
@@ -50,10 +50,13 @@ class Plt extends React.Component<{}, any> {
     );
   }
 }
+
 Plt.defaultProps = {
   x: Array.from({ length: 10 }, (x, i) => i + 1),
   y: Array.from({ length: 10 }, () => Math.random() * 10),
-  title: 'A Randomly Generated Plot'
+  title: 'A Randomly Generated Plot',
+  height: 480,
+  width: 600,
 }
 
 export default Plt
