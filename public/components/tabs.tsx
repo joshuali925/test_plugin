@@ -13,7 +13,7 @@ import Plt from './visualization/plt'
 import Visualization from './visualization/visualization';
 
 import GridLayout from 'react-grid-layout';
-import BasicLayout from './layout';
+import BasicLayout from './basiclayout';
 
 class EuiTabsNavigation extends Component {
   tabs: ({ id: string; name: string; content: JSX.Element; } | { id: string; name: JSX.Element; content: JSX.Element; })[];

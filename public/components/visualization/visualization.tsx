@@ -17,6 +17,7 @@ import { makeId, makeList, makeFromList, covidData } from './dataloader';
 import Hover from './hover'
 
 import Plt from './plt'
+import SearchBar from './searchbar';
 
 
 function Visualization(props) {
@@ -133,13 +134,36 @@ function Visualization(props) {
 
   return (
     <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
-      <EuiFlexGroup>
+      {/* TODO fix height */}
+      <EuiFlexGroup gutterSize="none" style={{ height: "80vh", maxHeight: "80vh" }}>
+
         <EuiFlexItem grow={false}>
-          <DataListSidebar />
+          <EuiFlexGroup direction="column">
+
+            <EuiFlexItem>
+              <SearchBar />
+            </EuiFlexItem>
+
+            <EuiFlexItem>
+              <DataListSidebar />
+            </EuiFlexItem>
+
+          </EuiFlexGroup>
         </EuiFlexItem>
+
+
         <EuiFlexItem>
-          <DataListVisualizer />
+          <EuiFlexGroup direction="column">
+
+            <EuiFlexItem>
+              <DataListVisualizer />
+            </EuiFlexItem>
+
+            <EuiFlexItem grow={false}>Another content grid item</EuiFlexItem>
+
+          </EuiFlexGroup>
         </EuiFlexItem>
+
       </EuiFlexGroup>
     </EuiDragDropContext>
   );
