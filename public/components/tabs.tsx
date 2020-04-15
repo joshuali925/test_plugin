@@ -25,11 +25,7 @@ class EuiTabsNavigation extends Component {
         name: 'Dashboard',
         content: (
           <Fragment>
-            <GridLayout className="layout" cols={12} rowHeight={30} width={1200}>
-              <div key="a" data-grid={{ x: 0, y: 0, w: 1, h: 2 }}>a</div>
-              <div key="b" data-grid={{ x: 1, y: 0, w: 3, h: 2 }}>b</div>
-              <div key="c" data-grid={{ x: 4, y: 0, w: 10, h: 10 }}>c</div>
-            </GridLayout>
+            <BasicLayout />
           </Fragment>
         ),
       },
@@ -51,7 +47,6 @@ class EuiTabsNavigation extends Component {
         name: 'Visualization',
         content: (
           <Fragment>
-            <EuiSpacer />
             <Visualization />
           </Fragment>
         ),
