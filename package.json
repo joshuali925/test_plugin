@@ -41,14 +41,16 @@
   },
   "dependencies": {
     "@elastic/eui": "22.5.0",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "plotly.js": "^1.53.0",
+    "react-plotly.js": "^2.4.0"
   },
   "devDependencies": {
     "@babel/parser": "^7.9.3",
     "@babel/types": "^7.9.0",
+    "@elastic/datemath": "link:../../packages/elastic-datemath",
     "@elastic/elasticsearch": "^7.4.0",
     "@elastic/eslint-config-kibana": "link:../../packages/eslint-config-kibana",
-    "@elastic/datemath": "link:../../packages/elastic-datemath",
     "@elastic/eslint-plugin-eui": "0.0.2",
     "@elastic/github-checks-reporter": "0.0.20b3",
     "@elastic/makelogs": "^5.0.1",
