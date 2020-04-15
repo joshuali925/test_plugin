@@ -17,13 +17,14 @@ import { makeId, makeList, makeFromList, covidData } from './dataloader';
 import Hover from './hover'
 
 import Plt from './plt'
-import SearchBar from './searchbar';
+import { EuiSearchBar } from '@elastic/eui';
 
 
 function Visualization(props) {
   const [isItemRemovable, setIsItemRemovable] = useState(false);
   // const [list1, setList1] = useState(makeList());
-  const [list1, setList1] = useState(makeFromList(Object.keys(covidData)));
+  const list1_all = makeFromList(Object.keys(covidData));
+  const [list1, setList1] = useState(list1_all);
   const [list2, setList2] = useState([]);
   const lists = { DROPPABLE_AREA_COPY_1: list1, DROPPABLE_AREA_COPY_2: list2 };
   const actions = {
@@ -93,31 +94,6 @@ function Visualization(props) {
     return (
       <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" withPanel grow>
         {list2.length ? (
-          // list2.map(({ content, id }, idx) => (
-          //   <EuiDraggable
-          //     key={id}
-          //     index={idx}
-          //     draggableId={id}
-          //     spacing="s"
-          //     isRemovable={isItemRemovable}>
-          //     <EuiPanel>
-          //       <EuiFlexGroup gutterSize="none" alignItems="center">
-          //         <EuiFlexItem>{content}</EuiFlexItem>
-          //         <EuiFlexItem grow={false}>
-          //           {isItemRemovable ? (
-          //             <EuiIcon type="trash" color="danger" />
-          //           ) : (
-          //               <EuiButtonIcon
-          //                 iconType="cross"
-          //                 aria-label="Remove"
-          //                 onClick={() => remove('DROPPABLE_AREA_COPY_2', idx)}
-          //               />
-          //             )}
-          //         </EuiFlexItem>
-          //       </EuiFlexGroup>
-          //     </EuiPanel>
-          //   </EuiDraggable>
-          // ))
           <Plt y={covidData[list2[0].content].y} title={list2[0].content} />
         ) : (
             <EuiFlexGroup
@@ -135,16 +111,35 @@ function Visualization(props) {
   return (
     <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
       {/* TODO fix height */}
-      <EuiFlexGroup gutterSize="none" style={{ height: "80vh", maxHeight: "80vh" }}>
+      <EuiFlexGroup gutterSize="none">
 
         <EuiFlexItem grow={false}>
-          <EuiFlexGroup direction="column">
+          <EuiFlexGroup direction="column" gutterSize="none" style={{ height: "40vh", maxHeight: "40vh" }}>
 
-            <EuiFlexItem>
-              <SearchBar />
+            <EuiFlexItem grow={false}>
+
+              <EuiSearchBar
+                defaultQuery={EuiSearchBar.Query.MATCH_ALL}
+                box={{
+                  placeholder: 'filter: country',
+                  incremental: true,
+                }}
+                onChange={({ query, error }) => {
+                  if (query.text === "") {
+                    setList1(list1_all)
+                    return;
+                  }
+                  let result = []
+                  list1_all.forEach(element => {
+                    if (element.content.includes(query.text)) 
+                      result.push(element)
+                  });
+                  setList1(result)
+                }}
+              />
             </EuiFlexItem>
 
-            <EuiFlexItem>
+            <EuiFlexItem grow={false}>
               <DataListSidebar />
             </EuiFlexItem>
 
@@ -153,7 +148,7 @@ function Visualization(props) {
 
 
         <EuiFlexItem>
-          <EuiFlexGroup direction="column">
+          <EuiFlexGroup direction="column" style={{ height: "85vh", maxHeight: "85vh" }}>
 
             <EuiFlexItem>
               <DataListVisualizer />

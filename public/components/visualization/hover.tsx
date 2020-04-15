@@ -33,7 +33,7 @@ class Hover extends React.Component<{}, any> {
     const panel = (
       <EuiPanel
           // TODO fix width
-        style={{ width: '80px' }}
+        style={{ width: '200px' }}
         onMouseEnter={this.onMouseEnter.bind(this)}
         onMouseLeave={this.onMouseLeave.bind(this)}>
         {this.props.content}
