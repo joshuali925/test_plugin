@@ -12,7 +12,6 @@ import {
 import Plt from './visualization/plt'
 import Visualization from './visualization/visualization';
 
-import GridLayout from 'react-grid-layout';
 import BasicLayout from './basiclayout';
 
 class EuiTabsNavigation extends Component {
@@ -30,8 +29,17 @@ class EuiTabsNavigation extends Component {
         ),
       },
       {
-        id: 'plot--id',
-        name: 'Plot',
+        id: 'panel-1--id',
+        name: 'Panel 1',
+        content: (
+          <Fragment>
+          <Visualization />
+          </Fragment>
+        ),
+      },
+      {
+        id: 'panel-2--id',
+        name: 'Panel 2',
         content: (
           <Fragment>
             <EuiSpacer />
@@ -43,17 +51,8 @@ class EuiTabsNavigation extends Component {
         ),
       },
       {
-        id: 'visualization--id',
-        name: 'Visualization',
-        content: (
-          <Fragment>
-            <Visualization />
-          </Fragment>
-        ),
-      },
-      {
-        id: 'monosodium_glutammate--id',
-        name: 'Monosodium Glutamate',
+        id: 'panel-3--id',
+        name: 'Panel 3',
         content: (
           <Fragment>
             <EuiSpacer />
@@ -78,7 +77,7 @@ class EuiTabsNavigation extends Component {
     return (
       <EuiTabbedContent
         tabs={this.tabs}
-        initialSelectedTab={this.tabs[2]}
+        initialSelectedTab={this.tabs[1]}
         autoFocus="selected"
         onTabClick={tab => {
           console.log('clicked tab', tab);

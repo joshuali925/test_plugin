@@ -19,6 +19,11 @@ import Hover from './hover'
 import Plt from './plt'
 import { EuiSearchBar } from '@elastic/eui';
 import { EuiCard, EuiText } from '@elastic/eui';
+import { TreeList } from './treelist';
+import { EuiTreeView } from '@elastic/eui';
+import { EuiListGroup } from '@elastic/eui';
+import { EuiListGroupItem } from '@elastic/eui';
+import Assets from './assets';
 
 
 function Visualization(props) {
@@ -84,6 +89,7 @@ function Visualization(props) {
         grow>
         {list1.map(({ content, id }, idx) => (
           <EuiDraggable key={id} index={idx} draggableId={id} spacing="s">
+            {/* hover, euipopover, euipanel */}
             <Hover content={content} hoverMessage={`this is the popover for item ${idx}, content = ${content}`} />
           </EuiDraggable>
         ))}
@@ -151,7 +157,7 @@ function Visualization(props) {
             </EuiFlexItem>
 
             <EuiFlexItem style={{ width: 200, minHeight: 300 }}>
-              <DataDetails />
+              <Assets />
             </EuiFlexItem>
 
           </EuiFlexGroup>
