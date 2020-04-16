@@ -18,6 +18,7 @@ import Hover from './hover'
 
 import Plt from './plt'
 import { EuiSearchBar } from '@elastic/eui';
+import { EuiCard, EuiText } from '@elastic/eui';
 
 
 function Visualization(props) {
@@ -90,6 +91,21 @@ function Visualization(props) {
     )
   }
 
+  function DataDetails() {
+    return (
+      <EuiCard
+        textAlign="left"
+        title=""
+        description="">
+        {list2.length ? (
+          <EuiText size="s">{covidData[list2[0].content].description}</EuiText>
+        ) : (
+            <EuiText></EuiText>
+          )}
+      </EuiCard>
+    )
+  }
+
   function DataListVisualizer() {
     return (
       <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" withPanel grow>
@@ -111,10 +127,10 @@ function Visualization(props) {
   return (
     <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
       {/* TODO fix height */}
-      <EuiFlexGroup gutterSize="none">
+      <EuiFlexGroup gutterSize="s">
 
         <EuiFlexItem grow={false}>
-          <EuiFlexGroup direction="column" gutterSize="none" style={{ height: "40vh", maxHeight: "40vh" }}>
+          <EuiFlexGroup direction="column" gutterSize="none">
 
             <EuiFlexItem grow={false}>
 
@@ -125,36 +141,34 @@ function Visualization(props) {
                   incremental: true,
                 }}
                 onChange={({ query, error }) => {
-                  if (query.text === "") {
-                    setList1(list1_all)
-                    return;
-                  }
-                  let result = []
-                  list1_all.forEach(element => {
-                    if (element.content.includes(query.text)) 
-                      result.push(element)
-                  });
-                  setList1(result)
+                  setList1(list1_all.filter(element => element.content.includes(query.text)))
                 }}
               />
             </EuiFlexItem>
 
-            <EuiFlexItem grow={false}>
+            <EuiFlexItem grow={false} style={{ height: "39vh" }}>
               <DataListSidebar />
+            </EuiFlexItem>
+
+            <EuiFlexItem style={{ width: 200, minHeight: 300 }}>
+              <DataDetails />
             </EuiFlexItem>
 
           </EuiFlexGroup>
         </EuiFlexItem>
 
+        <EuiFlexItem grow={false} style={{ width: 200 }}>
+          <DataDetails />
+        </EuiFlexItem>
 
         <EuiFlexItem>
-          <EuiFlexGroup direction="column" style={{ height: "85vh", maxHeight: "85vh" }}>
+          <EuiFlexGroup direction="column" style={{ height: "88vh", maxHeight: "88vh" }}>
 
             <EuiFlexItem>
               <DataListVisualizer />
             </EuiFlexItem>
 
-            <EuiFlexItem grow={false}>Another content grid item</EuiFlexItem>
+            <EuiFlexItem grow={false}><EuiPanel>Charts</EuiPanel></EuiFlexItem>
 
           </EuiFlexGroup>
         </EuiFlexItem>
