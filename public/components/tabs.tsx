@@ -80,7 +80,7 @@ class EuiTabsNavigation extends Component {
         initialSelectedTab={this.tabs[1]}
         autoFocus="selected"
         onTabClick={tab => {
-          console.log('clicked tab', tab);
+          // console.log('clicked tab', tab);
         }}
       />
     );

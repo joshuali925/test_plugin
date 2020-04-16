@@ -25,6 +25,7 @@ import { EuiListGroup } from '@elastic/eui';
 import { EuiListGroupItem } from '@elastic/eui';
 import Assets from './assets';
 import Axises from './axises';
+import Charts from './charts';
 
 
 function Visualization(props) {
@@ -188,7 +189,9 @@ function Visualization(props) {
               <DataListVisualizer />
             </EuiFlexItem>
 
-            <EuiFlexItem grow={false}><EuiPanel>Charts</EuiPanel></EuiFlexItem>
+            <EuiFlexItem grow={false} style={{height: 100}}>
+              <Charts />
+            </EuiFlexItem>
 
           </EuiFlexGroup>
         </EuiFlexItem>
