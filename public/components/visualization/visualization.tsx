@@ -34,6 +34,8 @@ function Visualization(props) {
   const [list1, setList1] = useState(list1_all);
   const [list2, setList2] = useState([]);
   const [currIndex, setCurrIndex] = useState("");  // lastly cliced item, conflicts with drag
+  const [plotType, setPlotType] = useState('bar')
+  const [plotOrientation, setPlotOrientation] = useState('v')
   const lists = { DROPPABLE_AREA_COPY_1: list1, DROPPABLE_AREA_COPY_2: list2 };
   const actions = {
     DROPPABLE_AREA_COPY_1: setList1,
@@ -138,7 +140,7 @@ function Visualization(props) {
         {list2.length ? (
           <EuiFlexGroup>
             <EuiFlexItem>
-              <Plt y={covidData[list2[0].content].y} title={list2[0].content} />
+              <Plt type={plotType} orientation={plotOrientation} y={covidData[list2[0].content].y} title={list2[0].content} />
             </EuiFlexItem>
             <EuiFlexItem sytle={{ padding: 30 }}>
               <Axises />
@@ -212,7 +214,7 @@ function Visualization(props) {
             </EuiFlexItem>
 
             <EuiFlexItem grow={false} style={{ height: 100 }}>
-              <Charts />
+              <Charts setPlotType={setPlotType} setPlotOrientation={setPlotOrientation} />
             </EuiFlexItem>
 
           </EuiFlexGroup>

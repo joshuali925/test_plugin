@@ -10,6 +10,7 @@ class Plt extends React.Component<{}, any> {
           x: Array.from({ length: this.props.y.length }, (x, i) => i + 1),
           y: this.props.y,
           type: this.props.type,
+          orientation: this.props.orientation,
           mode: 'lines+markers',
           marker: { color: 'red' },
           // text: 'hello'
@@ -58,6 +59,7 @@ Plt.defaultProps = {
   height: 480,
   width: 600,
   type: 'bar',
+  orientation: 'v',
 }
 
 export default Plt
