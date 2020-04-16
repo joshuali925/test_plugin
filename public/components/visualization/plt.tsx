@@ -9,7 +9,7 @@ class Plt extends React.Component<{}, any> {
         {
           x: Array.from({ length: this.props.y.length }, (x, i) => i + 1),
           y: this.props.y,
-          type: 'scatter',
+          type: this.props.type,
           mode: 'lines+markers',
           marker: { color: 'red' },
           // text: 'hello'
@@ -57,6 +57,7 @@ Plt.defaultProps = {
   title: 'A Randomly Generated Plot',
   height: 480,
   width: 600,
+  type: 'bar',
 }
 
 export default Plt

@@ -24,6 +24,7 @@ import { EuiTreeView } from '@elastic/eui';
 import { EuiListGroup } from '@elastic/eui';
 import { EuiListGroupItem } from '@elastic/eui';
 import Assets from './assets';
+import Axises from './axises';
 
 
 function Visualization(props) {
@@ -32,6 +33,7 @@ function Visualization(props) {
   const list1_all = makeFromList(Object.keys(covidData));
   const [list1, setList1] = useState(list1_all);
   const [list2, setList2] = useState([]);
+  const [currIndex, setCurrIndex] = useState("");
   const lists = { DROPPABLE_AREA_COPY_1: list1, DROPPABLE_AREA_COPY_2: list2 };
   const actions = {
     DROPPABLE_AREA_COPY_1: setList1,
@@ -89,8 +91,7 @@ function Visualization(props) {
         grow>
         {list1.map(({ content, id }, idx) => (
           <EuiDraggable key={id} index={idx} draggableId={id} spacing="s">
-            {/* hover, euipopover, euipanel */}
-            <Hover content={content} hoverMessage={`this is the popover for item ${idx}, content = ${content}`} />
+            <Hover loadIndex={setCurrIndex} content={content} hoverMessage={`this is the popover for item ${idx}, content = ${content}`} />
           </EuiDraggable>
         ))}
       </EuiDroppable>
@@ -103,8 +104,13 @@ function Visualization(props) {
         textAlign="left"
         title=""
         description="">
-        {list2.length ? (
-          <EuiText size="s">{covidData[list2[0].content].description}</EuiText>
+        {currIndex !== "" ? (
+          // <EuiText size="s">{covidData[list2[0].content].description}</EuiText>
+          <EuiListGroup>
+            {covidData[currIndex].y.map((num, idx) => (
+              <EuiListGroupItem label={num} key={idx} onClick={() => { }} />
+            ))}
+          </EuiListGroup>
         ) : (
             <EuiText></EuiText>
           )}
@@ -116,7 +122,14 @@ function Visualization(props) {
     return (
       <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" withPanel grow>
         {list2.length ? (
-          <Plt y={covidData[list2[0].content].y} title={list2[0].content} />
+          <EuiFlexGroup>
+            <EuiFlexItem>
+              <Plt y={covidData[list2[0].content].y} title={list2[0].content} />
+            </EuiFlexItem>
+            <EuiFlexItem sytle={{padding: 30}}>
+              <Axises />
+            </EuiFlexItem>
+          </EuiFlexGroup>
         ) : (
             <EuiFlexGroup
               alignItems="center"
@@ -143,11 +156,11 @@ function Visualization(props) {
               <EuiSearchBar
                 defaultQuery={EuiSearchBar.Query.MATCH_ALL}
                 box={{
-                  placeholder: 'filter: country',
+                  placeholder: 'Search',
                   incremental: true,
                 }}
                 onChange={({ query, error }) => {
-                  setList1(list1_all.filter(element => element.content.includes(query.text)))
+                  setList1(list1_all.filter(element => element.content.toLowerCase().includes(query.text.toLowerCase())))
                 }}
               />
             </EuiFlexItem>
@@ -167,6 +180,7 @@ function Visualization(props) {
           <DataDetails />
         </EuiFlexItem>
 
+
         <EuiFlexItem>
           <EuiFlexGroup direction="column" style={{ height: "88vh", maxHeight: "88vh" }}>
 
@@ -178,7 +192,6 @@ function Visualization(props) {
 
           </EuiFlexGroup>
         </EuiFlexItem>
-
       </EuiFlexGroup>
     </EuiDragDropContext>
   );
