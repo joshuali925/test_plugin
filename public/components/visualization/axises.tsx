@@ -18,7 +18,6 @@ class Axises extends React.Component<{}, any> {
   render() {
     return (
       <EuiListGroup flush={true} bordered={true}>
-        {console.log(this.props.data)}
         {this.props.data.map((label, idx) => (
           <EuiListGroupItem key={idx} onClick={() => { alert('clicked') }} label={label}></EuiListGroupItem>
         ))}

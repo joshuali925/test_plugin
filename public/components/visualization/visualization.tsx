@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
   EuiButtonIcon,
@@ -19,7 +19,6 @@ import Hover from './hover'
 import Plt from './plt'
 import { EuiSearchBar } from '@elastic/eui';
 import { EuiCard, EuiText } from '@elastic/eui';
-import { TreeList } from './treelist';
 import { EuiTreeView } from '@elastic/eui';
 import { EuiListGroup } from '@elastic/eui';
 import { EuiListGroupItem } from '@elastic/eui';
@@ -34,7 +33,7 @@ function Visualization(props) {
   const list1_all = makeFromList(Object.keys(covidData));
   const [list1, setList1] = useState(list1_all);
   const [list2, setList2] = useState([]);
-  const [currIndex, setCurrIndex] = useState("");
+  const [currIndex, setCurrIndex] = useState("");  // lastly cliced item, conflicts with drag
   const lists = { DROPPABLE_AREA_COPY_1: list1, DROPPABLE_AREA_COPY_2: list2 };
   const actions = {
     DROPPABLE_AREA_COPY_1: setList1,
@@ -99,23 +98,37 @@ function Visualization(props) {
     )
   }
 
-  function DataDetails() {
+  function SampleData() {
     return (
-      <EuiCard
-        textAlign="left"
-        title=""
-        description="">
-        {currIndex !== "" ? (
-          // <EuiText size="s">{covidData[list2[0].content].description}</EuiText>
-          <EuiListGroup>
-            {covidData[currIndex].y.map((num, idx) => (
+      <Fragment>
+        <EuiText>Sample Data</EuiText>
+        {list2.length > 0 ? (
+          <EuiListGroup bordered={true} style={{ minHeight: 250, width: 200 }}>
+            {covidData[list2[0].content].y.map((num, idx) => (
               <EuiListGroupItem label={num} key={idx} onClick={() => { }} />
             ))}
           </EuiListGroup>
         ) : (
-            <EuiText></EuiText>
+            <EuiListGroup bordered={true} style={{ minHeight: 250, width: 200 }}></EuiListGroup>
           )}
-      </EuiCard>
+      </Fragment>
+    )
+  }
+
+  function FieldInsights() {
+    return (
+      <Fragment>
+        <EuiText>Field Insights</EuiText>
+        {list2.length > 0 ? (
+          <EuiListGroup bordered={true} style={{ height: 250, width: 200 }}>
+            {covidData[list2[0].content].insights.map((label, idx) => (
+              <EuiListGroupItem label={label} key={idx} onClick={() => { }} />
+            ))}
+          </EuiListGroup>
+        ) : (
+            <EuiListGroup bordered={true} style={{ height: 250, width: 200 }}></EuiListGroup>
+          )}
+      </Fragment>
     )
   }
 
@@ -127,7 +140,7 @@ function Visualization(props) {
             <EuiFlexItem>
               <Plt y={covidData[list2[0].content].y} title={list2[0].content} />
             </EuiFlexItem>
-            <EuiFlexItem sytle={{padding: 30}}>
+            <EuiFlexItem sytle={{ padding: 30 }}>
               <Axises />
             </EuiFlexItem>
           </EuiFlexGroup>
@@ -177,10 +190,19 @@ function Visualization(props) {
           </EuiFlexGroup>
         </EuiFlexItem>
 
-        <EuiFlexItem grow={false} style={{ width: 200 }}>
-          <DataDetails />
-        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
 
+          <EuiFlexGroup direction="column">
+
+            <EuiFlexItem grow={false}>
+              <FieldInsights />
+            </EuiFlexItem>
+
+            <EuiFlexItem grow={false}>
+              <SampleData />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlexItem>
 
         <EuiFlexItem>
           <EuiFlexGroup direction="column" style={{ height: "88vh", maxHeight: "88vh" }}>
@@ -189,7 +211,7 @@ function Visualization(props) {
               <DataListVisualizer />
             </EuiFlexItem>
 
-            <EuiFlexItem grow={false} style={{height: 100}}>
+            <EuiFlexItem grow={false} style={{ height: 100 }}>
               <Charts />
             </EuiFlexItem>
 
