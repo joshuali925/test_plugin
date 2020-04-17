@@ -1,5 +1,6 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
+import Plotly from 'plotly.js/dist/plotly';
 
 class Plt extends React.Component<{}, any> {
   constructor(props) {
@@ -22,9 +23,20 @@ class Plt extends React.Component<{}, any> {
     return (
       <Plot
         data={this.state.data}
+        // config={{responsive: true}}
+        style={{ width: "100%", height: "100%" }}
+        useResizeHandler={true}
+        onInitialized={(figure, graphDiv) => this.graphDiv = graphDiv}
+        // onRelayout={(figure, graphDiv) => { console.log('Relayout!', this.graphDiv) }}
+        // onRestyle={() => { console.log('Restyle!') }}
+        // onRedraw={() => { console.log('Redraw!') }}
+        // onUnhover={() => { console.log('Unhover!') }}
+        // onAutosize={() => { console.log('Autosize!') }}
+        onHover={() => Plotly.Plots.resize(this.graphDiv) }
         layout={{
-          height: this.props.height,
-          width: this.props.width,
+          // height: this.props.height,
+          // width: this.props.width,
+          autosize: true,
           title: this.props.title,
           // plot_bgcolor: "#1d1e24",
           // paper_bgcolor: "#1d1e24",
@@ -56,8 +68,8 @@ Plt.defaultProps = {
   x: Array.from({ length: 10 }, (x, i) => i + 1),
   y: Array.from({ length: 10 }, () => Math.random() * 10),
   title: 'A Randomly Generated Plot',
-  height: 480,
-  width: 600,
+  height: 400,
+  width: 400,
   type: 'bar',
   orientation: 'v',
 }
