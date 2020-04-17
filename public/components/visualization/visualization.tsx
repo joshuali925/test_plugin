@@ -61,7 +61,6 @@ function Visualization(props) {
           source.index,
           destination.index
         );
-
         actions[destination.droppableId](items);
       } else {
         const sourceId = source.droppableId;

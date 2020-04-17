@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { EuiFlexGroup } from '@elastic/eui';
 import { EuiTabbedContent } from '@elastic/eui';
-import { x } from 'tar';
 import { EuiFlexItem } from '@elastic/eui';
 import { EuiIcon } from '@elastic/eui';
 import { EuiCard } from '@elastic/eui';
@@ -43,22 +42,22 @@ class Charts extends React.Component<{}, any> {
               <EuiFlexItem>
                 <EuiCard
                   style={{height: 60, width:60}}
-                  icon={<EuiIcon type="visPie" />}
-                  title=""
-                  description=""
-                  onClick={() => {
-                  }}
-                />
-              </EuiFlexItem>
-              <EuiFlexItem>
-                <EuiCard
-                  style={{height: 60, width:60}}
                   icon={<EuiIcon type="visLine" />}
                   title=""
                   description=""
                   onClick={() => {
                     this.props.setPlotType('scatter')
                     this.props.setPlotOrientation('v')
+                  }}
+                />
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiCard
+                  style={{height: 60, width:60}}
+                  icon={<EuiIcon type="visPie" />}
+                  title=""
+                  description=""
+                  onClick={() => {
                   }}
                 />
               </EuiFlexItem>
