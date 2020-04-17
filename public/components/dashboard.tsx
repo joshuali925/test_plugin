@@ -4,6 +4,8 @@ import Plt from './visualization/plt';
 import { EuiFlexGroup } from '@elastic/eui';
 import { EuiFlexItem } from '@elastic/eui';
 import ReactResizeDetector from 'react-resize-detector';
+import AnnotationsInput from './annotationsInput'
+import { EuiFieldText } from '@elastic/eui';
 
 class Dashboard extends React.Component<{}, any> {
   constructor(props) {
