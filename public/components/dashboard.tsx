@@ -25,6 +25,18 @@ class Dashboard extends React.Component<{}, any> {
           id: 'c',
           y: Array.from({ length: 15 }, () => Math.random() * 15),
         },
+        {
+          id: 'd',
+          y: Array.from({ length: 15 }, () => Math.random() * 15),
+        },
+        {
+          id: 'e',
+          y: Array.from({ length: 15 }, () => Math.random() * 15),
+        },
+        {
+          id: 'f',
+          y: Array.from({ length: 15 }, () => Math.random() * 15),
+        },
       ]
     };
   }
@@ -36,8 +48,8 @@ class Dashboard extends React.Component<{}, any> {
     return (
       <Fragment>
         <GridLayout className="layout" cols={12} rowHeight={30} width={1200}>
-          {this.state.data.map(({ id, y, annotations }, idx) => (
-            <div key={id} data-grid={{ x: 4 * idx, y: 0, w: 4, h: 10 }}>
+          {this.state.data.map(({ id, y }, idx) => (
+            <div key={id} data-grid={{ x: 4 * (idx % 4), y: 4 * Math.floor(idx / 4), w: 4, h: 10 }}>
               <Plt ref={this.state.children[idx]} y={y} />
               <ReactResizeDetector handleWidth handleHeight onResize={() => this.state.children[idx].current.autoResize()} />
             </div>
