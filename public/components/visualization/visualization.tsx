@@ -139,7 +139,7 @@ function Visualization(props) {
         {list2.length ? (
           <EuiFlexGroup>
             <EuiFlexItem>
-              <Plt type={plotType} orientation={plotOrientation} y={covidData[list2[0].content].y} title={list2[0].content} />
+              <Plt width={600} height={400} type={plotType} orientation={plotOrientation} y={covidData[list2[0].content].y} title={list2[0].content} />
             </EuiFlexItem>
             <EuiFlexItem sytle={{ padding: 30 }}>
               <Axises />

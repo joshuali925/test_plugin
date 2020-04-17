@@ -10333,6 +10333,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash-es@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
+  integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
+
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
@@ -13104,6 +13109,17 @@ react-redux@^7.1.1:
     loose-envify "^1.4.0"
     prop-types "^15.7.2"
     react-is "^16.9.0"
+
+react-resize-detector@^4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-4.2.3.tgz#7df258668a30bdfd88e655bbdb27db7fd7b23127"
+  integrity sha512-4AeS6lxdz2KOgDZaOVt1duoDHrbYwSrUX32KeM9j6t9ISyRphoJbTRCMS1aPFxZHFqcCGLT1gMl3lEcSWZNW0A==
+  dependencies:
+    lodash "^4.17.15"
+    lodash-es "^4.17.15"
+    prop-types "^15.7.2"
+    raf-schd "^4.0.2"
+    resize-observer-polyfill "^1.5.1"
 
 react-test-renderer@^16.0.0-0, react-test-renderer@^16.12.0:
   version "16.13.1"
