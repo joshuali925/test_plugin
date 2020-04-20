@@ -78,13 +78,13 @@ class Plt extends React.Component<{}, any> {
         </EuiModal>
       </EuiOverlayMask>
     ) : (
-        <div></div>
+        null
       )
     );
   }
 
   addAnnotation(e, text) {
-    let anno = {
+    let annotation = {
       x: e.points[0].x,
       y: e.points[0].y,
       xref: 'x',
@@ -92,10 +92,10 @@ class Plt extends React.Component<{}, any> {
       text: text,
       showarrow: true,
       arrowhead: 7,
-      ax: -40,
+      ax: -5,
       ay: -40,
     }
-    this.state.annotations.push(anno)
+    this.state.annotations.push(annotation)
     Plotly.redraw(this.graphDiv)
   }
 
@@ -133,6 +133,8 @@ class Plt extends React.Component<{}, any> {
             autosize: true,
             title: this.props.title,
             annotations: this.state.annotations,
+            yaxis: { fixedrange: true },
+            xaxis: { fixedrange: true }
           }}
         />
       </Fragment>

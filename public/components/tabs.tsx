@@ -12,7 +12,6 @@ import {
 import Plt from './visualization/plt'
 import Visualization from './visualization/visualization';
 
-import BasicLayout from './basiclayout';
 import Dashboard from './dashboard';
 
 class EuiTabsNavigation extends Component {
@@ -25,7 +24,6 @@ class EuiTabsNavigation extends Component {
         name: 'Dashboard',
         content: (
           <Fragment>
-            {/* <BasicLayout /> */}
             <Dashboard />
           </Fragment>
         ),
