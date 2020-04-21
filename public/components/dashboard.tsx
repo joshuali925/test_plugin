@@ -5,7 +5,8 @@ import ReactResizeDetector from 'react-resize-detector';
 import { EuiIcon } from '@elastic/eui';
 import { EuiKeyPadMenuItem } from '@elastic/eui';
 import { EuiOverlayMask, EuiModal, EuiModalHeader, EuiModalHeaderTitle, EuiModalBody, EuiFieldText, EuiModalFooter, EuiButtonEmpty, EuiButton } from '@elastic/eui';
-import { EuiSuperSelect } from '@elastic/eui';
+import { htmlIdGenerator } from '@elastic/eui';
+import { EuiCheckboxGroup } from '@elastic/eui';
 
 class Dashboard extends React.Component<{}, any> {
   constructor(props) {
@@ -14,7 +15,7 @@ class Dashboard extends React.Component<{}, any> {
       children: [],
       show: false,
       isModalVisible: false,
-      selected: "panel_1",
+      checkboxIdToSelectedMap: {},
       data: [
         {
           id: 'a',
@@ -71,24 +72,33 @@ class Dashboard extends React.Component<{}, any> {
           </EuiModalHeader>
 
           <EuiModalBody>
-            <EuiSuperSelect
-              name="select"
+            <EuiCheckboxGroup
               options={[
                 {
-                  value: 'panel_1',
-                  inputDisplay: 'Panel 1',
+                  id: 'panel_1',
+                  label: 'Panel 1',
                 },
                 {
-                  value: 'panel_2',
-                  inputDisplay: 'Panel 2',
+                  id: 'panel_2',
+                  label: 'Panel 2',
                 },
                 {
-                  value: 'panel_3',
-                  inputDisplay: 'Panel 3',
+                  id: 'panel_3',
+                  label: 'Panel 3',
                 },
               ]}
-              valueOfSelected={this.state.selected}
-              onChange={(value) => { this.setState({ selected: value }) }}
+              idToSelectedMap={this.state.checkboxIdToSelectedMap}
+              onChange={id => {
+                this.setState((prevState) => {
+                  return {
+                    ...prevState,
+                    checkboxIdToSelectedMap: {
+                      ...prevState.checkboxIdToSelectedMap,
+                      [id]: !prevState.checkboxIdToSelectedMap[id]
+                    }
+                  }
+                })
+              }}
             />
           </EuiModalBody>
 
@@ -102,10 +112,7 @@ class Dashboard extends React.Component<{}, any> {
           </EuiModalFooter>
         </EuiModal>
       </EuiOverlayMask>
-    ) : (
-        null
-      )
-    );
+    ) : (null));
   }
 
   showSelectModal() {
@@ -117,8 +124,14 @@ class Dashboard extends React.Component<{}, any> {
   }
 
   save() {
-    this.setState({ isModalVisible: false })
-    this.setState({ show: true });
+    this.setState({ isModalVisible: false });
+    for (const id in this.state.checkboxIdToSelectedMap) {
+      if (this.state.checkboxIdToSelectedMap[id]) {
+        this.setState({ show: true });
+        return;
+      }
+    }
+    this.setState({ show: false });
   }
 
   render() {
@@ -131,7 +144,7 @@ class Dashboard extends React.Component<{}, any> {
         {this.selectModal()}
 
         {this.state.show ? (
-          <GridLayout className="layout" cols={12} rowHeight={30} width={1200}>
+          <GridLayout className="layout" cols={12} rowHeight={30} width={1400}>
             {this.state.data.map(({ id, y, type, title, orientation }, idx) => (
               <div key={`grid-${id}`} data-grid={{ x: 4 * (idx % 3), y: 4 * Math.floor(idx / 3), w: 4, h: 10 }}>
                 <Plt ref={this.state.children[idx]} y={y} type={type} orientation={orientation} title={title} />
@@ -144,7 +157,7 @@ class Dashboard extends React.Component<{}, any> {
 
         <EuiKeyPadMenuItem
           style={{ width: 100, height: 100 }}
-          label="Add Panels"
+          label="Add Visualizations"
           onClick={() => { this.showSelectModal() }}>
           <EuiIcon type="plusInCircle" size="l" />
         </EuiKeyPadMenuItem>
