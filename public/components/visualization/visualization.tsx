@@ -25,6 +25,7 @@ import { EuiListGroupItem } from '@elastic/eui';
 import Assets from './assets';
 import Axises from './axises';
 import Charts from './charts';
+import { TreeViewCompressed } from './treevw';
 
 
 function Visualization(props) {
@@ -180,7 +181,8 @@ function Visualization(props) {
               />
             </EuiFlexItem>
 
-            <EuiFlexItem grow={false} style={{ height: "39vh" }}>
+            <EuiFlexItem grow={false} style={{ height: "39vh", width: 200}}>
+              <TreeViewCompressed />
               <DataListSidebar />
             </EuiFlexItem>
 

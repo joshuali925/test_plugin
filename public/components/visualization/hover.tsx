@@ -34,6 +34,7 @@ class Hover extends React.Component<{}, any> {
       <EuiPanel
         // TODO fix width
         style={{ width: '200px' }}
+        paddingSize="s"
         onMouseEnter={this.onMouseEnter.bind(this)}
         onMouseLeave={this.onMouseLeave.bind(this)}
         // TODO onclick and draggable conflict

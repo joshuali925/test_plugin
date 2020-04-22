@@ -45,7 +45,7 @@ class EuiTabsNavigation extends Component {
           content: (
             <Fragment>
               <EuiText>Panel 2</EuiText>
-              <Plt height={400} width={600}/>
+              <Plt height={400} width={600} />
             </Fragment>
           ),
         },
@@ -74,9 +74,9 @@ class EuiTabsNavigation extends Component {
             // console.log('clicked tab', tab);
           }}
         /> */}
-        
+
         {this.state.tabs[this.state.activeTabIndex].content}
-        
+
         <EuiControlBar
           showContent={false}
           size="s"
@@ -86,25 +86,25 @@ class EuiTabsNavigation extends Component {
                 controlType: 'tab',
                 id: 'dashboard--id',
                 label: 'Dashboard',
-                onClick: () => { this.setState({activeTabIndex: 0})},
+                onClick: () => { this.setState({ activeTabIndex: 0 }) },
               },
               {
                 controlType: 'tab',
                 id: 'panel-1--id',
                 label: 'Panel 1',
-                onClick: () => { this.setState({activeTabIndex: 1})},
+                onClick: () => { this.setState({ activeTabIndex: 1 }) },
               },
               {
                 controlType: 'tab',
                 id: 'panel-1--id',
                 label: 'Panel 2',
-                onClick: () => { this.setState({activeTabIndex: 2})},
+                onClick: () => { this.setState({ activeTabIndex: 2 }) },
               },
               {
                 controlType: 'tab',
                 id: 'panel-1--id',
                 label: 'Panel 3',
-                onClick: () => { this.setState({activeTabIndex: 3})},
+                onClick: () => { this.setState({ activeTabIndex: 3 }) },
               },
             ]
           }
