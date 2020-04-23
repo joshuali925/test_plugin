@@ -164,7 +164,7 @@ function Visualization(props) {
       {/* TODO fix height */}
       <EuiFlexGroup gutterSize="s">
 
-        <EuiFlexItem grow={false}>
+        <EuiFlexItem grow={false} style={{width:200}}>
           <EuiFlexGroup direction="column" gutterSize="none">
 
             <EuiFlexItem grow={false}>
@@ -181,11 +181,11 @@ function Visualization(props) {
               />
             </EuiFlexItem>
 
-            <EuiFlexItem grow={false} style={{ height: "39vh", width: 200}}>
+            <EuiFlexItem grow={false} style={{ height: "39vh"}}>
               <DataListSidebar />
             </EuiFlexItem>
 
-            <EuiFlexItem style={{ width: 200, minHeight: 300 }}>
+            <EuiFlexItem style={{ minHeight: 300, paddingLeft: 10 }}>
               <Assets />
             </EuiFlexItem>
 

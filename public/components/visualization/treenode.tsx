@@ -40,7 +40,7 @@ class TreeNode extends Component {
                 {this.state.expand ? (
                   this.props.children.map((child, idx) => (
                     <Fragment key={idx}>
-                      <EuiText style={{ paddingTop: 10, paddingLeft: 21, fontSize: '0.95em', fontStyle: 'italic' }}>{child}</EuiText>
+                      <EuiText style={{ paddingTop: 10, paddingLeft: 21, fontSize: '0.95em', fontStyle: 'italic' }}>{'- ' + child}</EuiText>
                     </Fragment>
                   ))
                 ) : (null)}

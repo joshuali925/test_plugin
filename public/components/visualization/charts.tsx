@@ -17,7 +17,7 @@ class Charts extends React.Component<{}, any> {
             <EuiFlexGroup>
               <EuiFlexItem>
                 <EuiCard
-                  style={{height: 60, width:60}}
+                  style={{ height: 60, width: 60, marginTop: 10 }}
                   icon={<EuiIcon type="visBarHorizontal" />}
                   title=""
                   description=""
@@ -29,7 +29,7 @@ class Charts extends React.Component<{}, any> {
               </EuiFlexItem>
               <EuiFlexItem>
                 <EuiCard
-                  style={{height: 60, width:60}}
+                  style={{ height: 60, width: 60, marginTop: 10 }}
                   icon={<EuiIcon type="visBarVertical" />}
                   title=""
                   description=""
@@ -41,7 +41,7 @@ class Charts extends React.Component<{}, any> {
               </EuiFlexItem>
               <EuiFlexItem>
                 <EuiCard
-                  style={{height: 60, width:60}}
+                  style={{ height: 60, width: 60, marginTop: 10 }}
                   icon={<EuiIcon type="visLine" />}
                   title=""
                   description=""
@@ -53,7 +53,7 @@ class Charts extends React.Component<{}, any> {
               </EuiFlexItem>
               <EuiFlexItem>
                 <EuiCard
-                  style={{height: 60, width:60}}
+                  style={{ height: 60, width: 60, marginTop: 10 }}
                   icon={<EuiIcon type="visPie" />}
                   title=""
                   description=""
@@ -63,7 +63,7 @@ class Charts extends React.Component<{}, any> {
               </EuiFlexItem>
               <EuiFlexItem>
                 <EuiCard
-                  style={{height: 60, width:60}}
+                  style={{ height: 60, width: 60, marginTop: 10 }}
                   icon={<EuiIcon type="visArea" />}
                   title=""
                   description=""
@@ -133,7 +133,7 @@ class Charts extends React.Component<{}, any> {
 }
 
 Charts.defaultProps = {
-  
+
 }
 
 export default Charts
