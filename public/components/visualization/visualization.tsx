@@ -164,11 +164,11 @@ function Visualization(props) {
       {/* TODO fix height */}
       <EuiFlexGroup gutterSize="s">
 
-        <EuiFlexItem grow={false} style={{width:200}}>
+        <EuiFlexItem grow={false} style={{ width: 200 }}>
           <EuiFlexGroup direction="column" gutterSize="none">
 
             <EuiFlexItem grow={false}>
-              
+
               <EuiSearchBar
                 defaultQuery={EuiSearchBar.Query.MATCH_ALL}
                 box={{
@@ -181,7 +181,7 @@ function Visualization(props) {
               />
             </EuiFlexItem>
 
-            <EuiFlexItem grow={false} style={{ height: "39vh"}}>
+            <EuiFlexItem grow={false} style={{ height: "42vh" }}>
               <DataListSidebar />
             </EuiFlexItem>
 

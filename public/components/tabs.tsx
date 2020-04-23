@@ -19,7 +19,7 @@ class EuiTabsNavigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTabIndex: 0,
+      activeTabIndex: 1,
       tabs: [
         {
           id: 'dashboard--id',
@@ -66,18 +66,18 @@ class EuiTabsNavigation extends Component {
   render() {
     return (
       <Fragment>
-        {/* <EuiTabbedContent
+        <EuiTabbedContent
           tabs={this.state.tabs}
           initialSelectedTab={this.state.tabs[0]}
           autoFocus="selected"
           onTabClick={tab => {
             // console.log('clicked tab', tab);
           }}
-        /> */}
+        />
 
-        {this.state.tabs[this.state.activeTabIndex].content}
+        {/* {this.state.tabs[this.state.activeTabIndex].content} */}
 
-        <EuiControlBar
+        {/* <EuiControlBar
           showContent={false}
           size="s"
           controls={
@@ -108,7 +108,7 @@ class EuiTabsNavigation extends Component {
               },
             ]
           }
-        />
+        /> */}
       </Fragment>
     );
   }
