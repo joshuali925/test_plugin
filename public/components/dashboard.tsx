@@ -133,13 +133,10 @@ class Dashboard extends React.Component<{}, any> {
       if (this.state.checkboxIdToSelectedMap[id]) {
         this.setState({ show: true });
 
-        let i = (Number(id.slice(-1)) - 1) * 2
+        let i = (Number(id.slice(-1)) - 1)
         datalist[i]["grid_x"] = 4 * ((this.state.data.length) % 3)
         datalist[i]["grid_y"] = 4 * Math.floor((this.state.data.length) / 3)
         this.state.data.push(datalist[i]);
-        datalist[i + 1]["grid_x"] = 4 * (this.state.data.length % 3)
-        datalist[i + 1]["grid_y"] = 4 * Math.floor(this.state.data.length / 3)
-        this.state.data.push(datalist[i + 1]);
       }
     });
     console.log(this.state.data)
@@ -157,6 +154,7 @@ class Dashboard extends React.Component<{}, any> {
         {this.selectModal()}
 
         {this.state.show ? (
+          <Fragment>
           <GridLayout className="layout" cols={12} rowHeight={26} width={1400}>
             {this.state.data.map(({ id, y, type, title, orientation, grid_x, grid_y }, idx) => (
               <div key={`grid-${id}`} data-grid={{ x: grid_x, y: grid_y, w: 4, h: 10 }}>
@@ -165,15 +163,24 @@ class Dashboard extends React.Component<{}, any> {
               </div>
             ))}
           </GridLayout>
-        ) : (null)}
-
-
-        <EuiKeyPadMenuItem
+          <EuiKeyPadMenuItem
+          style={{ width: 100, height: 100, bottom: 0, right: 0, position: "fixed" }}
+          label="Add Visualizations"
+          onClick={() => { this.showSelectModal() }}>
+          <EuiIcon type="plusInCircle" size="l" />
+            </EuiKeyPadMenuItem>
+            </Fragment>
+        ) : (
+          <EuiKeyPadMenuItem
           style={{ width: 100, height: 100 }}
           label="Add Visualizations"
           onClick={() => { this.showSelectModal() }}>
           <EuiIcon type="plusInCircle" size="l" />
         </EuiKeyPadMenuItem>
+        )}
+
+        
+        
 
       </Fragment>
     );
