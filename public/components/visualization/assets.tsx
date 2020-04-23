@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { EuiListGroup } from '@elastic/eui';
 import { EuiListGroupItem } from '@elastic/eui';
 import { EuiCard } from '@elastic/eui';
+import { EuiText } from '@elastic/eui';
 
 class Assets extends React.Component<{}, any> {
   constructor(props) {
@@ -10,7 +11,7 @@ class Assets extends React.Component<{}, any> {
   render() {
     return (
       <Fragment>
-        <EuiCard
+        {/* <EuiCard
           textAlign="left"
           title="Assets"
           description="">
@@ -19,7 +20,14 @@ class Assets extends React.Component<{}, any> {
               <EuiListGroupItem key={idx} onClick={() => { alert('clicked') }} label={label}></EuiListGroupItem>
             ))}
           </EuiListGroup>
-        </EuiCard>
+        </EuiCard> */}
+
+        <EuiText>Assets</EuiText>
+        <EuiListGroup bordered={true} >
+          {this.props.data.map(({ label }, idx) => (
+            <EuiListGroupItem key={idx} onClick={() => { alert('clicked') }} label={label}></EuiListGroupItem>
+          ))}
+        </EuiListGroup>
       </Fragment>
     );
   }

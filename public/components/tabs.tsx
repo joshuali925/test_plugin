@@ -19,7 +19,7 @@ class EuiTabsNavigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTabIndex: 0,
+      activeTabIndex: 1,
       tabs: [
         {
           id: 'dashboard--id',

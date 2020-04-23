@@ -25,7 +25,7 @@ import { EuiListGroupItem } from '@elastic/eui';
 import Assets from './assets';
 import Axises from './axises';
 import Charts from './charts';
-import { TreeViewCompressed } from './treevw';
+import TreeNode from './treenode';
 
 
 function Visualization(props) {
@@ -93,7 +93,7 @@ function Visualization(props) {
         grow>
         {list1.map(({ content, id }, idx) => (
           <EuiDraggable key={id} index={idx} draggableId={id} spacing="s">
-            <Hover loadIndex={setCurrIndex} content={content} hoverMessage={`this is the popover for item ${idx}, content = ${content}`} />
+            <Hover loadIndex={setCurrIndex} content={content} children={covidData[content].children || []} hoverMessage={`this is the popover for item ${idx}, content = ${content}`} />
           </EuiDraggable>
         ))}
       </EuiDroppable>
@@ -168,7 +168,7 @@ function Visualization(props) {
           <EuiFlexGroup direction="column" gutterSize="none">
 
             <EuiFlexItem grow={false}>
-
+              
               <EuiSearchBar
                 defaultQuery={EuiSearchBar.Query.MATCH_ALL}
                 box={{
@@ -182,7 +182,6 @@ function Visualization(props) {
             </EuiFlexItem>
 
             <EuiFlexItem grow={false} style={{ height: "39vh", width: 200}}>
-              <TreeViewCompressed />
               <DataListSidebar />
             </EuiFlexItem>
 

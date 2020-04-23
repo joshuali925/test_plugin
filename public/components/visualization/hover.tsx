@@ -1,5 +1,6 @@
 import React from 'react';
 import { EuiPopover, EuiPanel } from '@elastic/eui';
+import TreeNode from './treenode';
 
 
 class Hover extends React.Component<{}, any> {
@@ -31,17 +32,17 @@ class Hover extends React.Component<{}, any> {
 
   render() {
     const panel = (
-      <EuiPanel
-        // TODO fix width
-        style={{ width: '200px' }}
+      <TreeNode 
+        style={{ backgroundColor: 'transparent', border: 'none', boxShadow: 'none' }}
         paddingSize="s"
+        loadIndex={this.props.loadIndex}
+        content={this.props.content}
+        children={this.props.children}
         onMouseEnter={this.onMouseEnter.bind(this)}
         onMouseLeave={this.onMouseLeave.bind(this)}
-        // TODO onclick and draggable conflict
-        // onClick={() => this.props.loadIndex(this.props.content)}
-      >
-        {this.props.content}
-      </EuiPanel>
+      // TODO onclick and draggable conflict
+      // onClick={() => this.props.loadIndex(this.props.content)}
+      />
     );
 
     return (

@@ -1,12 +1,16 @@
 
 const sampleData = {
   airports_idx: {
+    children: ["address", "IATA identifier"]
   },
   flights_idx: {
+    children: ["number"]
   },
   Cargo: {
+    children: []
   },
   Passengers: {
+    children: ["name"]
   },
 }
 
