@@ -3,7 +3,8 @@ import React, { useState, Fragment, Component } from 'react';
 import { EuiPanel } from '@elastic/eui';
 import { EuiIcon } from '@elastic/eui';
 import { EuiText } from '@elastic/eui';
-
+import { EuiFlexGroup } from '@elastic/eui';
+import { EuiFlexItem } from '@elastic/eui';
 
 
 class TreeNode extends Component {
@@ -26,17 +27,33 @@ class TreeNode extends Component {
           paddingSize="s">
           {this.props.children.length === 0 ? (
             <Fragment>
-              <EuiIcon type="empty" />
-              {' ' + this.props.content}
+              <EuiFlexGroup>
+                <EuiFlexItem grow={false} style={{ marginRight: -6 }}>
+                  <EuiIcon type="empty" />
+                </EuiFlexItem>
+                <EuiFlexItem onClick={() => {
+                  // this.props.loadIndex(this.props.content)
+                }}>
+                  {this.props.content}
+                </EuiFlexItem>
+              </EuiFlexGroup>
             </Fragment>
           ) : (
               <Fragment>
-                {this.state.expand ? (
-                  <EuiIcon type="arrowDown" onClick={() => this.toggleExpand()} />
-                ) : (
-                    <EuiIcon type="arrowRight" onClick={() => this.toggleExpand()} />
-                  )}
-                {' ' + this.props.content}
+                <EuiFlexGroup>
+                  <EuiFlexItem grow={false} style={{ marginRight: -6 }}>
+                    {this.state.expand ? (
+                      <EuiIcon type="arrowDown" onClick={() => this.toggleExpand()} />
+                    ) : (
+                        <EuiIcon type="arrowRight" onClick={() => this.toggleExpand()} />
+                      )}
+                  </EuiFlexItem>
+                  <EuiFlexItem onClick={() => {
+                    // this.props.loadIndex(this.props.content)
+                  }}>
+                    {this.props.content}
+                  </EuiFlexItem>
+                </EuiFlexGroup>
                 {this.state.expand ? (
                   this.props.children.map((child, idx) => (
                     <Fragment key={idx}>

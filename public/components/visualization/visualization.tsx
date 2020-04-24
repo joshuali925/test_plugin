@@ -25,7 +25,6 @@ import { EuiListGroupItem } from '@elastic/eui';
 import Assets from './assets';
 import Axises from './axises';
 import Charts from './charts';
-import TreeNode from './treenode';
 
 
 function Visualization(props) {
