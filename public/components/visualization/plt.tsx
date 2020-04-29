@@ -18,7 +18,15 @@ class Plt extends React.Component<{}, any> {
           type: this.props.type,
           orientation: this.props.orientation,
           mode: 'lines+markers',
-          marker: { color: 'red' },
+          marker: {
+            color: 'rgb(97, 147, 201)',
+            opacity: 0.7,
+            size: 20,
+            line: {
+              color: 'rgb(53, 97, 164)',
+              width: 2
+            }
+          },
           // text: 'hello'
         },
       ],
@@ -146,7 +154,7 @@ Plt.defaultProps = {
   x: Array.from({ length: 10 }, (x, i) => i + 1),
   y: Array.from({ length: 10 }, () => Math.random() * 10),
   title: 'A Randomly Generated Plot',
-  type: 'bar',
+  type: 'scatter',
   orientation: 'v',
 }
 
