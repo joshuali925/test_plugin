@@ -4,7 +4,7 @@ import Plotly from 'plotly.js/dist/plotly';
 import { EuiOverlayMask, EuiModal, EuiModalHeader, EuiModalHeaderTitle, EuiModalBody, EuiFieldText, EuiModalFooter, EuiButtonEmpty, EuiButton } from '@elastic/eui';
 
 
-class Plt extends React.Component<{}, any> {
+class Gantt extends React.Component<{}, any> {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,21 +13,79 @@ class Plt extends React.Component<{}, any> {
       event: undefined,
       data: [
         {
-          x: Array.from({ length: this.props.y.length }, (x, i) => i + 1),
-          y: this.props.y,
-          type: this.props.type,
-          orientation: this.props.orientation,
-          mode: 'lines+markers',
-          marker: {
-            color: 'rgb(97, 147, 201)',
-            opacity: 0.7,
-            size: 20,
-            line: {
-              color: 'rgb(53, 97, 164)',
-              width: 2
-            }
-          },
-          // text: 'hello'
+          x: [3],
+          y: [2],
+          type: 'bar',
+          orientation: 'h',
+          marker: { color: 'rgba(255,255,255,0)' },
+          hoverinfo: "none",
+          showlegend: false,
+        },
+        {
+          x: [5],
+          y: [2],
+          type: 'bar',
+          orientation: 'h',
+        },
+        {
+          x: [6],
+          y: [4],
+          type: 'bar',
+          orientation: 'h',
+          marker: { color: 'rgba(255,255,255,0)' },
+          hoverinfo: "none",
+          showlegend: false,
+        },
+        {
+          x: [4],
+          y: [4],
+          type: 'bar',
+          orientation: 'h',
+        },
+        {
+          x: [9],
+          y: [6],
+          type: 'bar',
+          orientation: 'h',
+          marker: { color: 'rgba(255,255,255,0)' },
+          hoverinfo: "none",
+          showlegend: false,
+        },
+        {
+          x: [5],
+          y: [6],
+          type: 'bar',
+          orientation: 'h',
+        },
+        {
+          x: [12],
+          y: [8],
+          type: 'bar',
+          orientation: 'h',
+          marker: { color: 'rgba(255,255,255,0)' },
+          hoverinfo: "none",
+          showlegend: false,
+        },
+        {
+          x: [5],
+          y: [8],
+          type: 'bar',
+          orientation: 'h',
+        },
+        {
+          x: [15],
+          y: [10],
+          type: 'bar',
+          orientation: 'h',
+          marker: { color: 'rgba(255,255,255,0)' },
+          hoverinfo: "none",
+          showlegend: false,
+        },
+        {
+          x: [5],
+          y: [10],
+          type: 'bar',
+          orientation: 'h',
         },
       ],
       annotations: [],
@@ -108,19 +166,7 @@ class Plt extends React.Component<{}, any> {
   }
 
   render() {
-    const peak_annotation = [
-      {
-        x: this.state.data[0].y.indexOf(Math.max(...this.state.data[0].y)) + 1,
-        y: Math.max(...this.state.data[0].y),
-        xref: 'x',
-        yref: 'y',
-        text: 'Peak',
-        showarrow: true,
-        arrowhead: 7,
-        ax: -40,
-        ay: -40
-      }
-    ];
+    
 
     return (
       <Fragment>
@@ -128,8 +174,7 @@ class Plt extends React.Component<{}, any> {
         {this.inputModal()}
 
         <Plot
-          data={this.props.data || this.state.data}
-          // config={{responsive: true}}
+          data={this.state.data}
           style={{ width: "100%", height: "100%" }}
           useResizeHandler={true}
           onInitialized={(figure, graphDiv) => this.graphDiv = graphDiv}
@@ -151,12 +196,12 @@ class Plt extends React.Component<{}, any> {
   }
 }
 
-Plt.defaultProps = {
+Gantt.defaultProps = {
   x: Array.from({ length: 10 }, (x, i) => i + 1),
   y: Array.from({ length: 10 }, () => Math.random() * 10),
-  title: 'A Randomly Generated Plot',
-  type: 'scatter',
-  orientation: 'v',
+  title: 'Gantt',
+  type: 'bar',
+  orientation: 'h',
 }
 
-export default Plt
+export default Gantt

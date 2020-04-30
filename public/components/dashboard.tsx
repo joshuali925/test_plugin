@@ -81,6 +81,207 @@ class Dashboard extends React.Component<{}, any> {
   }
 
   save() {
+    const gantt = {
+      data: [{
+        x: [3],
+        y: [10],
+        type: 'bar',
+        orientation: 'h',
+        marker: { color: 'rgba(255,255,255,0)' },
+        mode:'lines',
+        line:{width:0},
+        hoverinfo: "none",
+        showlegend: false,
+      },
+      {
+        x: [7],
+        y: [10],
+        type: 'bar',
+        orientation: 'h',
+        showlegend: false,
+        mode:'lines',
+        line:{width:0},
+        marker: {
+          color: 'rgb(97, 147, 201)',
+          opacity: 0.7,
+          line: {
+            color: 'rgb(53, 97, 164)',
+            width: 2
+          }
+        },
+      },
+      {
+        x: [7],
+        y: [8],
+        type: 'bar',
+        orientation: 'h',
+        marker: { color: 'rgba(255,255,255,0)' },
+        mode:'lines',
+        line:{width:0},
+        hoverinfo: "none",
+        showlegend: false,
+      },
+      {
+        x: [6],
+        y: [8],
+        type: 'bar',
+        orientation: 'h',
+        showlegend: false,
+        mode:'lines',
+        line:{width:0},
+        marker: {
+          color: 'rgb(97, 147, 201)',
+          opacity: 0.7,
+          line: {
+            color: 'rgb(53, 97, 164)',
+            width: 2
+          }
+        },
+      },
+      {
+        x: [11],
+        y: [6],
+        type: 'bar',
+        orientation: 'h',
+        marker: { color: 'rgba(255,255,255,0)' },
+        mode:'lines',
+        line:{width:0},
+        hoverinfo: "none",
+        showlegend: false,
+      },
+      {
+        x: [8],
+        y: [6],
+        type: 'bar',
+        orientation: 'h',
+        showlegend: false,
+        mode:'lines',
+        line:{width:0},
+        marker: {
+          color: 'rgb(97, 147, 201)',
+          opacity: 0.7,
+          line: {
+            color: 'rgb(53, 97, 164)',
+            width: 2
+          }
+        },
+      },
+      {
+        x: [14],
+        y: [4],
+        type: 'bar',
+        orientation: 'h',
+        marker: { color: 'rgba(255,255,255,0)' },
+        mode:'lines',
+        line:{width:0},
+        hoverinfo: "none",
+        showlegend: false,
+      },
+      {
+        x: [7],
+        y: [4],
+        type: 'bar',
+        orientation: 'h',
+        showlegend: false,
+        mode:'lines',
+        line:{width:0},
+        marker: {
+          color: 'rgb(97, 147, 201)',
+          opacity: 0.7,
+          line: {
+            color: 'rgb(53, 97, 164)',
+            width: 2
+          }
+        },
+      },
+      {
+        x: [17],
+        y: [2],
+        type: 'bar',
+        orientation: 'h',
+        marker: { color: 'rgba(255,255,255,0)' },
+        mode:'lines',
+        line:{width:0},
+        hoverinfo: "none",
+        showlegend: false,
+      },
+      {
+        x: [9],
+        y: [2],
+        type: 'bar',
+        orientation: 'h',
+        showlegend: false,
+        mode:'lines',
+        line:{width:0},
+        marker: {
+          color: 'rgb(97, 147, 201)',
+          opacity: 0.7,
+          line: {
+            color: 'rgb(53, 97, 164)',
+            width: 2
+          }
+        },
+      },
+      {
+        x: [20],
+        y: [0],
+        type: 'bar',
+        orientation: 'h',
+        marker: { color: 'rgba(255,255,255,0)' },
+        mode:'lines',
+        line:{width:0},
+        hoverinfo: "none",
+        showlegend: false,
+      },
+      {
+        x: [8],
+        y: [0],
+        type: 'bar',
+        orientation: 'h',
+        showlegend: false,
+        mode:'lines',
+        line:{width:0},
+        marker: {
+          color: 'rgb(97, 147, 201)',
+          opacity: 0.7,
+          line: {
+            color: 'rgb(53, 97, 164)',
+            width: 2
+          }
+        },
+      },
+      {
+        x: [24],
+        y: [-2],
+        type: 'bar',
+        orientation: 'h',
+        marker: { color: 'rgba(255,255,255,0)' },
+        mode:'lines',
+        line:{width:0},
+        hoverinfo: "none",
+        showlegend: false,
+      },
+      {
+        x: [10],
+        y: [-2],
+        type: 'bar',
+        orientation: 'h',
+        showlegend: false,
+        mode:'lines',
+        line:{width:0},
+        marker: {
+          color: 'rgb(97, 147, 201)',
+          opacity: 0.7,
+          line: {
+            color: 'rgb(53, 97, 164)',
+            width: 2
+          }
+        },
+      },
+      ],
+      title: "Plot 3"
+    };
+    
     const datalist = [
       {
         id: 'a',
@@ -92,37 +293,16 @@ class Dashboard extends React.Component<{}, any> {
       {
         id: 'b',
         y: Array.from({ length: 15 }, () => Math.random() * 15),
-        type: 'bar',
+        type: 'scatter',
         orientation: 'v',
         title: 'Plot 2',
       },
       {
         id: 'c',
         y: Array.from({ length: 15 }, () => Math.random() * 15),
-        type: 'scatter',
+        type: 'bar',
         orientation: 'v',
         title: 'Plot 3',
-      },
-      {
-        id: 'd',
-        y: Array.from({ length: 15 }, () => Math.random() * 15),
-        type: 'scatter',
-        orientation: 'h',
-        title: 'Plot 4',
-      },
-      {
-        id: 'e',
-        y: Array.from({ length: 15 }, () => Math.random() * 15),
-        type: 'bar',
-        orientation: 'h',
-        title: 'Plot 5',
-      },
-      {
-        id: 'f',
-        y: Array.from({ length: 15 }, () => Math.random() * 15),
-        type: 'bar',
-        orientation: 'v',
-        title: 'Plot 6',
       },
     ];
 
@@ -132,11 +312,16 @@ class Dashboard extends React.Component<{}, any> {
     Object.keys(this.state.checkboxIdToSelectedMap).sort().forEach(id => {
       if (this.state.checkboxIdToSelectedMap[id]) {
         this.setState({ show: true });
-
         let i = (Number(id.slice(-1)) - 1)
-        datalist[i]["grid_x"] = 4 * ((this.state.data.length) % 3)
-        datalist[i]["grid_y"] = 4 * Math.floor((this.state.data.length) / 3)
-        this.state.data.push(datalist[i]);
+        if (i < 2) {
+          datalist[i]["grid_x"] = 4 * ((this.state.data.length) % 3)
+          datalist[i]["grid_y"] = 4 * Math.floor((this.state.data.length) / 3)
+          this.state.data.push(datalist[i]);
+        } else {
+          gantt["grid_x"] = 4 * ((this.state.data.length) % 3)
+          gantt["grid_y"] = 4 * Math.floor((this.state.data.length) / 3)
+          this.state.data.push(gantt);
+        }
       }
     });
     console.log(this.state.data)
@@ -155,32 +340,32 @@ class Dashboard extends React.Component<{}, any> {
 
         {this.state.show ? (
           <Fragment>
-          <GridLayout className="layout" cols={12} rowHeight={26} width={1400}>
-            {this.state.data.map(({ id, y, type, title, orientation, grid_x, grid_y }, idx) => (
-              <div key={`grid-${id}`} data-grid={{ x: grid_x, y: grid_y, w: 4, h: 10 }}>
-                <Plt ref={this.state.children[idx]} y={y} type={type} orientation={orientation} title={title} />
-                <ReactResizeDetector handleWidth handleHeight onResize={() => this.state.children[idx].current.autoResize()} />
-              </div>
-            ))}
-          </GridLayout>
-          <EuiKeyPadMenuItem
-          style={{ width: 100, height: 100, bottom: 0, right: 0, position: "fixed" }}
-          label="Add Visualizations"
-          onClick={() => { this.showSelectModal() }}>
-          <EuiIcon type="plusInCircle" size="l" />
+            <GridLayout className="layout" cols={12} rowHeight={26} width={1400}>
+              {this.state.data.map(({ id, y, type, title, orientation, grid_x, grid_y, data }, idx) => (
+                <div key={`grid-${id}`} data-grid={{ x: grid_x, y: grid_y, w: 4, h: 10 }}>
+                  <Plt ref={this.state.children[idx]} data={data} y={y} type={type} orientation={orientation} title={title} />
+                  <ReactResizeDetector handleWidth handleHeight onResize={() => this.state.children[idx].current.autoResize()} />
+                </div>
+              ))}
+            </GridLayout>
+            <EuiKeyPadMenuItem
+              style={{ width: 100, height: 100, bottom: 0, right: 0, position: "fixed" }}
+              label="Add Visualizations"
+              onClick={() => { this.showSelectModal() }}>
+              <EuiIcon type="plusInCircle" size="l" />
             </EuiKeyPadMenuItem>
-            </Fragment>
+          </Fragment>
         ) : (
-          <EuiKeyPadMenuItem
-          style={{ width: 100, height: 100 }}
-          label="Add Visualizations"
-          onClick={() => { this.showSelectModal() }}>
-          <EuiIcon type="plusInCircle" size="l" />
-        </EuiKeyPadMenuItem>
-        )}
+            <EuiKeyPadMenuItem
+              style={{ width: 100, height: 100 }}
+              label="Add Visualizations"
+              onClick={() => { this.showSelectModal() }}>
+              <EuiIcon type="plusInCircle" size="l" />
+            </EuiKeyPadMenuItem>
+          )}
 
-        
-        
+
+
 
       </Fragment>
     );

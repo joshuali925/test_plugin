@@ -14,6 +14,7 @@ import Visualization from './visualization/visualization';
 
 import Dashboard from './dashboard';
 import { EuiControlBar } from '@elastic/eui';
+import Gantt from './visualization/gantt';
 
 class EuiTabsNavigation extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class EuiTabsNavigation extends Component {
           content: (
             <Fragment>
               <EuiText>Panel 2</EuiText>
-              <Plt height={400} width={600} />
+              <Gantt height={400} width={600} />
             </Fragment>
           ),
         },
