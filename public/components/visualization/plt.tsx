@@ -163,10 +163,11 @@ class Plt extends React.Component<{}, any> {
             legend: {
               orientation: 'h',
             },
-            dragmode: 'lasso', // (enumerated: "zoom" | "pan" | "select" | "lasso" | "orbit" | "turntable" )
+            // dragmode: 'lasso', // (enumerated: "zoom" | "pan" | "select" | "lasso" | "orbit" | "turntable" )
             hovermode: 'closest',
             xaxis: {
               showgrid: true,
+              fixedrange: true,
               zeroline: false,
               type: 'auto',
               gridcolor: 'rgb(60,61,64)',
@@ -174,6 +175,7 @@ class Plt extends React.Component<{}, any> {
             },
             yaxis: {
               showgrid: true,
+              fixedrange: true,
               zeroline: false,
               type: 'linear',
               gridcolor: 'rgb(60,61,64)',
@@ -181,6 +183,7 @@ class Plt extends React.Component<{}, any> {
             },
             zaxis: {
               showgrid: true,
+              fixedrange: true,
               zeroline: false,
               type: 'linear',
               gridcolor: 'rgb(60,61,64)',
