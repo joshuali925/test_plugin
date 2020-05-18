@@ -83,7 +83,8 @@ class Dashboard extends React.Component<{}, any> {
   save() {
     const propx = Array.from({ length: 450 }, (x, i) => i),
       propy = Array.from({ length: 450 }, () => Math.random() * 15 + 100),
-      propy2 = Array.from({ length: 120 }, () => Math.random() * 1);
+      propy2 = Array.from({ length: 120 }, () => Math.random() * 1),
+      now = Date.now()
     const datalist = [
       {
         data: [
@@ -97,6 +98,7 @@ class Dashboard extends React.Component<{}, any> {
               shape: 'linear',
             },
             type: 'scatter',
+            name: 'web_server_01',
             displayModeBar: false,
             fill: 'tonexty',  // tozeroy
           },
@@ -110,6 +112,7 @@ class Dashboard extends React.Component<{}, any> {
               shape: 'linear',
             },
             type: 'scatter',
+            name: 'web_server_02',
             displayModeBar: false,
             fill: 'tonexty',
           },
@@ -123,6 +126,7 @@ class Dashboard extends React.Component<{}, any> {
               shape: 'linear',
             },
             type: 'scatter',
+            name: 'web_server_03',
             displayModeBar: false,
             fill: 'tonexty',
           },
@@ -136,14 +140,26 @@ class Dashboard extends React.Component<{}, any> {
               shape: 'linear',
             },
             type: 'scatter',
+            name: 'web_server_04',
             displayModeBar: false,
             fill: 'tonexty',
           },
         ],
-        title: 'Plot 1'
+        title: 'Server Requests'
       },
       {
         data: [
+          {
+            x: Array.from({ length: 30 }, (x, i) => i),
+            y: Array.from({ length: 30 }, (x, i) => Math.random() * 1),
+            marker: {
+              color: 'rgb(172, 158, 148)',
+            },
+            width: 0.65,
+            type: 'bar',
+            name: 'upper_25',
+            displayModeBar: false,
+          },
           {
             x: Array.from({ length: 30 }, (x, i) => i),
             y: Array.from({ length: 30 }, (x, i) => Math.random() * 1 + 5),
@@ -152,6 +168,7 @@ class Dashboard extends React.Component<{}, any> {
             },
             width: 0.65,
             type: 'bar',
+            name: 'upper_50',
             displayModeBar: false,
           },
           {
@@ -162,6 +179,7 @@ class Dashboard extends React.Component<{}, any> {
             },
             width: 0.65,
             type: 'bar',
+            name: 'upper_75',
             displayModeBar: false,
           },
           {
@@ -172,6 +190,7 @@ class Dashboard extends React.Component<{}, any> {
             },
             width: 0.65,
             type: 'bar',
+            name: 'upper_90',
             displayModeBar: false,
           },
           {
@@ -182,13 +201,29 @@ class Dashboard extends React.Component<{}, any> {
             },
             width: 0.65,
             type: 'bar',
+            name: 'upper_95',
             displayModeBar: false,
           }
         ],
-        title: 'Plot 2',
+        title: 'Client Side Full Page Load',
       },
       {
         data: [
+          {
+            x: Array.from({ length: 120 }, (x, i) => i),
+            y: Array.from({ length: 120 }, (x, i) => Math.random() * 1),
+            line: {
+              color: 'rgb(101, 157, 86)',
+              width: 2.2,
+              dash: 'solid',
+              shape: 'linear',
+            },
+            type: 'scatter',
+            name: 'upper_25',
+            displayModeBar: false,
+            fill: 'tozeroy',  // tozeroy
+            fillcolor: 'rgba(101, 157, 86, 0.25)',
+          },
           {
             x: Array.from({ length: 120 }, (x, i) => i),
             y: Array.from({ length: 120 }, (x, i) => propy2[i] * 1 + Math.random() * 1 + 1),
@@ -199,6 +234,7 @@ class Dashboard extends React.Component<{}, any> {
               shape: 'linear',
             },
             type: 'scatter',
+            name: 'upper_50',
             displayModeBar: false,
             fill: 'tozeroy',  // tozeroy
             fillcolor: 'rgba(101, 157, 86, 0.25)',
@@ -213,6 +249,7 @@ class Dashboard extends React.Component<{}, any> {
               shape: 'linear',
             },
             type: 'scatter',
+            name: 'upper_75',
             displayModeBar: false,
             fill: 'tozeroy',
             fillcolor: 'rgba(91, 150, 77, 0.25)',
@@ -227,6 +264,7 @@ class Dashboard extends React.Component<{}, any> {
               shape: 'linear',
             },
             type: 'scatter',
+            name: 'upper_90',
             displayModeBar: false,
             fill: 'tozeroy',
             fillcolor: 'rgba(91, 150, 77, 0.25)',
@@ -241,6 +279,7 @@ class Dashboard extends React.Component<{}, any> {
               shape: 'linear',
             },
             type: 'scatter',
+            name: 'upper_95',
             displayModeBar: false,
             fill: 'tozeroy',
             fillcolor: 'rgba(80, 134, 66, 0.25)',
@@ -255,6 +294,7 @@ class Dashboard extends React.Component<{}, any> {
               shape: 'linear',
             },
             type: 'scatter',
+            name: 'cpu1',
             displayModeBar: false,
             fill: 'tozeroy',
             fillcolor: 'rgba(30, 120, 193, 0.25)',
@@ -269,12 +309,13 @@ class Dashboard extends React.Component<{}, any> {
               shape: 'linear',
             },
             type: 'scatter',
+            name: 'cpu2',
             displayModeBar: false,
             fill: 'tozeroy',
             fillcolor: 'rgba(130, 181, 216, 0.25)',
           },
         ],
-        title: 'Plot 3',
+        title: 'Traffic In/Out',
       },
     ];
 

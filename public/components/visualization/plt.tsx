@@ -160,9 +160,9 @@ class Plt extends React.Component<{}, any> {
             },
             annotations: this.state.annotations,
             barmode: 'stack',
-            showlegend: false,
             legend: {
               orientation: 'h',
+              traceorder: 'normal',
             },
             // dragmode: 'lasso', // (enumerated: "zoom" | "pan" | "select" | "lasso" | "orbit" | "turntable" )
             hovermode: 'closest',
