@@ -15,6 +15,7 @@ import Visualization from './visualization/visualization';
 import Dashboard from './dashboard';
 import { EuiControlBar } from '@elastic/eui';
 import Gantt from './visualization/gantt';
+import DarkPlt from './visualization/darkplt';
 
 class EuiTabsNavigation extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class EuiTabsNavigation extends Component {
           content: (
             <Fragment>
               <EuiText>Panel 2</EuiText>
-              <Gantt height={400} width={600} />
+              <DarkPlt height={400} width={1200} />
             </Fragment>
           ),
         },
@@ -69,7 +70,7 @@ class EuiTabsNavigation extends Component {
       <Fragment>
         <EuiTabbedContent
           tabs={this.state.tabs}
-          initialSelectedTab={this.state.tabs[0]}
+          initialSelectedTab={this.state.tabs[2]}
           autoFocus="selected"
           onTabClick={tab => {
             // console.log('clicked tab', tab);

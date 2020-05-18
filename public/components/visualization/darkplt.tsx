@@ -4,7 +4,7 @@ import Plotly from 'plotly.js/dist/plotly';
 import { EuiOverlayMask, EuiModal, EuiModalHeader, EuiModalHeaderTitle, EuiModalBody, EuiFieldText, EuiModalFooter, EuiButtonEmpty, EuiButton } from '@elastic/eui';
 
 
-class Plt extends React.Component<{}, any> {
+class DarkPlt extends React.Component<{}, any> {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,22 +13,57 @@ class Plt extends React.Component<{}, any> {
       event: undefined,
       data: [
         {
-          x: Array.from({ length: this.props.y.length }, (x, i) => i + 1),
+          x: this.props.x,
           y: this.props.y,
-          type: this.props.type,
-          orientation: this.props.orientation,
-          mode: 'lines+markers',
-          marker: {
-            color: 'rgb(97, 147, 201)',
-            opacity: 0.7,
-            size: 20,
-            line: {
-              color: 'rgba(53, 97, 164, 0)',
-              width: 2
-            }
+          line: {
+            color: 'rgb(132, 207, 228)',
+            width: 1,
+            dash: 'solid',
+            shape: 'linear',
           },
-          // text: 'hello'
+          type: 'scatter',
+          displayModeBar: false,
+          fill: 'tonexty',  // tozeroy
         },
+        {
+          x: this.props.x,
+          y: this.props.y.map(y => y * 2),
+          line: {
+            color: 'rgb(82, 133, 189)',
+            width: 1,
+            dash: 'solid',
+            shape: 'linear',
+          },
+          type: 'scatter',
+          displayModeBar: false,
+          fill: 'tonexty',
+        },
+        {
+          x: this.props.x,
+          y: this.props.y.map(y => y * 3),
+          line: {
+            color: 'rgb(31, 77, 145)',
+            width: 1,
+            dash: 'solid',
+            shape: 'linear',
+          },
+          type: 'scatter',
+          displayModeBar: false,
+          fill: 'tonexty',
+        },
+        {
+          x: this.props.x,
+          y: this.props.y.map(y => y * 4),
+          line: {
+            color: 'rgb(27, 61, 108)',
+            width: 1,
+            dash: 'solid',
+            shape: 'linear',
+          },
+          type: 'scatter',
+          displayModeBar: false,
+          fill: 'tonexty',
+        }
       ],
       annotations: [],
     };
@@ -108,20 +143,6 @@ class Plt extends React.Component<{}, any> {
   }
 
   render() {
-    const peak_annotation = [
-      {
-        x: this.state.data[0].y.indexOf(Math.max(...this.state.data[0].y)) + 1,
-        y: Math.max(...this.state.data[0].y),
-        xref: 'x',
-        yref: 'y',
-        text: 'Peak',
-        showarrow: true,
-        arrowhead: 7,
-        ax: -40,
-        ay: -40
-      }
-    ];
-
     return (
       <Fragment>
         {/* <this.inputModal /> */}
@@ -180,6 +201,7 @@ class Plt extends React.Component<{}, any> {
               gridcolor: 'rgb(60,61,64)',
               rangemode: 'normal', // (enumerated: "normal" | "tozero" | "nonnegative" )
             },
+
           }}
         />
       </Fragment>
@@ -187,12 +209,12 @@ class Plt extends React.Component<{}, any> {
   }
 }
 
-Plt.defaultProps = {
-  x: Array.from({ length: 10 }, (x, i) => i + 1),
-  y: Array.from({ length: 10 }, () => Math.random() * 10),
-  title: 'A Randomly Generated Plot',
+DarkPlt.defaultProps = {
+  x: Array.from({ length: 700 }, (x, i) => i),
+  y: Array.from({ length: 700 }, () => Math.random() * 15 + 100),
+  title: 'A Dark Plot',
   type: 'scatter',
   orientation: 'v',
 }
 
-export default Plt
+export default DarkPlt

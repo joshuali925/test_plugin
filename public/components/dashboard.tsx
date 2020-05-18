@@ -105,7 +105,7 @@ class Dashboard extends React.Component<{}, any> {
           color: 'rgb(97, 147, 201)',
           opacity: 0.7,
           line: {
-            color: 'rgb(53, 97, 164)',
+            color: 'rgba(53, 97, 164, 0)',
             width: 2
           }
         },
@@ -133,7 +133,7 @@ class Dashboard extends React.Component<{}, any> {
           color: 'rgb(97, 147, 201)',
           opacity: 0.7,
           line: {
-            color: 'rgb(53, 97, 164)',
+            color: 'rgba(53, 97, 164, 0)',
             width: 2
           }
         },
@@ -161,7 +161,7 @@ class Dashboard extends React.Component<{}, any> {
           color: 'rgb(97, 147, 201)',
           opacity: 0.7,
           line: {
-            color: 'rgb(53, 97, 164)',
+            color: 'rgba(53, 97, 164, 0)',
             width: 2
           }
         },
@@ -189,7 +189,7 @@ class Dashboard extends React.Component<{}, any> {
           color: 'rgb(97, 147, 201)',
           opacity: 0.7,
           line: {
-            color: 'rgb(53, 97, 164)',
+            color: 'rgba(53, 97, 164, 0)',
             width: 2
           }
         },
@@ -217,7 +217,7 @@ class Dashboard extends React.Component<{}, any> {
           color: 'rgb(97, 147, 201)',
           opacity: 0.7,
           line: {
-            color: 'rgb(53, 97, 164)',
+            color: 'rgba(53, 97, 164, 0)',
             width: 2
           }
         },
@@ -245,7 +245,7 @@ class Dashboard extends React.Component<{}, any> {
           color: 'rgb(97, 147, 201)',
           opacity: 0.7,
           line: {
-            color: 'rgb(53, 97, 164)',
+            color: 'rgba(53, 97, 164, 0)',
             width: 2
           }
         },
@@ -273,7 +273,7 @@ class Dashboard extends React.Component<{}, any> {
           color: 'rgb(97, 147, 201)',
           opacity: 0.7,
           line: {
-            color: 'rgb(53, 97, 164)',
+            color: 'rgba(53, 97, 164, 0)',
             width: 2
           }
         },
