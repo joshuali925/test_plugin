@@ -190,6 +190,7 @@ class Plt extends React.Component<{}, any> {
               gridcolor: 'rgb(60,61,64)',
               rangemode: 'normal', // (enumerated: "normal" | "tozero" | "nonnegative" )
             },
+            ...this.props.layout,
           }}
         />
       </Fragment>
@@ -200,6 +201,7 @@ class Plt extends React.Component<{}, any> {
 Plt.defaultProps = {
   x: Array.from({ length: 10 }, (x, i) => i + 1),
   y: Array.from({ length: 10 }, () => Math.random() * 10),
+  layout: {},
   title: 'A Randomly Generated Plot',
   type: 'scatter',
   orientation: 'v',

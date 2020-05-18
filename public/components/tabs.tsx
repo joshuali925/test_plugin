@@ -71,6 +71,7 @@ class EuiTabsNavigation extends Component {
         <EuiTabbedContent
           tabs={this.state.tabs}
           initialSelectedTab={this.state.tabs[0]}
+          style={{ marginTop: -5 }}
           autoFocus="selected"
           onTabClick={tab => {
             // console.log('clicked tab', tab);
