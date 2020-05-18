@@ -135,9 +135,10 @@ class Plt extends React.Component<{}, any> {
           onInitialized={(figure, graphDiv) => this.graphDiv = graphDiv}
           onHover={() => Plotly.Plots.resize(this.graphDiv)}
           onClick={(e) => this.showInputModal(e)}
+          config={{ displayModeBar: false }}
           layout={{
-            plot_bgcolor: "rgb(26,27,32)",
-            paper_bgcolor: "rgb(26,27,32)",
+            plot_bgcolor: "rgb(30,31,36)",  // 26, 27, 32
+            paper_bgcolor: "rgb(30,31,36)",
             font: {
               color: "rgb(201,208,216)"
             },
