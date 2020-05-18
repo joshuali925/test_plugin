@@ -165,12 +165,19 @@ class DarkPlt extends React.Component<{}, any> {
             height: this.props.height,
             width: this.props.width,
             autosize: true,
-            title: {
-              text: this.props.title,
-              font: {
-                size: 13,
-              },
-              y: 0.8,
+            // title: {
+            //   text: this.props.title,
+            //   font: {
+            //     size: 13,
+            //   },
+            //   y: 0.8,
+            // },
+            margin: {
+              l: 50,
+              r: 50,
+              b: 50,
+              t: 50,
+              pad: 4
             },
             annotations: this.state.annotations,
             barmode: 'stack',

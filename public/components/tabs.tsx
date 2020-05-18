@@ -70,7 +70,7 @@ class EuiTabsNavigation extends Component {
       <Fragment>
         <EuiTabbedContent
           tabs={this.state.tabs}
-          initialSelectedTab={this.state.tabs[2]}
+          initialSelectedTab={this.state.tabs[0]}
           autoFocus="selected"
           onTabClick={tab => {
             // console.log('clicked tab', tab);
