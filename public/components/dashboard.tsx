@@ -278,10 +278,8 @@ class Dashboard extends React.Component<{}, any> {
       },
     ];
 
-
     this.setState({ isModalVisible: false });
     this.state.data.length = 0;
-    
 
     Object.keys(this.state.checkboxIdToSelectedMap).sort().forEach(id => {
       if (this.state.checkboxIdToSelectedMap[id]) {
@@ -309,7 +307,7 @@ class Dashboard extends React.Component<{}, any> {
           <Fragment>
             <GridLayout className="layout" cols={12} rowHeight={26} width={1400}>
               {this.state.data.map(({ title, grid_x, grid_y, data }, idx) => (
-                <div key={`grid-${idx}`} data-grid={{ x: grid_x, y: grid_y, w: 6, h: 8 }}>
+                <div key={`grid-${idx}`} data-grid={{ x: grid_x, y: grid_y, w: 6, h: 8 }} style={{border: 'solid #202226', borderRadius: '7px'}}>
                   <Plt ref={this.state.children[idx]} data={data} title={title} />
                   <ReactResizeDetector handleWidth handleHeight onResize={() => this.state.children[idx].current.autoResize()} />
                 </div>
