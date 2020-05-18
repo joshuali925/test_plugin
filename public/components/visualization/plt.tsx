@@ -144,18 +144,17 @@ class Plt extends React.Component<{}, any> {
             height: this.props.height,
             width: this.props.width,
             autosize: true,
-            // title: {
-            //   text: this.props.title,
-            //   font: {
-            //     size: 13,
-            //   },
-            //   y: 0.8,
-            // },
+            title: {
+              text: this.props.title,
+              font: {
+                size: 13,
+              },
+            },
             margin: {
-              l: 50,
-              r: 50,
-              b: 50,
-              t: 50,
+              l: 40,
+              r: 30,
+              b: 30,
+              t: 40,
               pad: 4
             },
             annotations: this.state.annotations,

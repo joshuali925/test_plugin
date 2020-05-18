@@ -81,218 +81,10 @@ class Dashboard extends React.Component<{}, any> {
   }
 
   save() {
-    const propx = Array.from({ length: 700 }, (x, i) => i),
-      propy = Array.from({ length: 700 }, () => Math.random() * 15 + 100);
+    const propx = Array.from({ length: 450 }, (x, i) => i),
+      propy = Array.from({ length: 450 }, () => Math.random() * 15 + 100),
+      propy2 = Array.from({ length: 120 }, () => Math.random() * 1);
     const datalist = [
-      {
-        data: [{
-          x: [3],
-          y: [10],
-          type: 'bar',
-          orientation: 'h',
-          marker: { color: 'rgba(255,255,255,0)' },
-          mode: 'lines',
-          line: { width: 0 },
-          hoverinfo: "none",
-          showlegend: false,
-        },
-        {
-          x: [7],
-          y: [10],
-          type: 'bar',
-          orientation: 'h',
-          showlegend: false,
-          mode: 'lines',
-          line: { width: 0 },
-          marker: {
-            color: 'rgb(97, 147, 201)',
-            opacity: 0.7,
-            line: {
-              color: 'rgba(53, 97, 164, 0)',
-              width: 2
-            }
-          },
-        },
-        {
-          x: [7],
-          y: [8],
-          type: 'bar',
-          orientation: 'h',
-          marker: { color: 'rgba(255,255,255,0)' },
-          mode: 'lines',
-          line: { width: 0 },
-          hoverinfo: "none",
-          showlegend: false,
-        },
-        {
-          x: [6],
-          y: [8],
-          type: 'bar',
-          orientation: 'h',
-          showlegend: false,
-          mode: 'lines',
-          line: { width: 0 },
-          marker: {
-            color: 'rgb(97, 147, 201)',
-            opacity: 0.7,
-            line: {
-              color: 'rgba(53, 97, 164, 0)',
-              width: 2
-            }
-          },
-        },
-        {
-          x: [11],
-          y: [6],
-          type: 'bar',
-          orientation: 'h',
-          marker: { color: 'rgba(255,255,255,0)' },
-          mode: 'lines',
-          line: { width: 0 },
-          hoverinfo: "none",
-          showlegend: false,
-        },
-        {
-          x: [8],
-          y: [6],
-          type: 'bar',
-          orientation: 'h',
-          showlegend: false,
-          mode: 'lines',
-          line: { width: 0 },
-          marker: {
-            color: 'rgb(97, 147, 201)',
-            opacity: 0.7,
-            line: {
-              color: 'rgba(53, 97, 164, 0)',
-              width: 2
-            }
-          },
-        },
-        {
-          x: [14],
-          y: [4],
-          type: 'bar',
-          orientation: 'h',
-          marker: { color: 'rgba(255,255,255,0)' },
-          mode: 'lines',
-          line: { width: 0 },
-          hoverinfo: "none",
-          showlegend: false,
-        },
-        {
-          x: [7],
-          y: [4],
-          type: 'bar',
-          orientation: 'h',
-          showlegend: false,
-          mode: 'lines',
-          line: { width: 0 },
-          marker: {
-            color: 'rgb(97, 147, 201)',
-            opacity: 0.7,
-            line: {
-              color: 'rgba(53, 97, 164, 0)',
-              width: 2
-            }
-          },
-        },
-        {
-          x: [17],
-          y: [2],
-          type: 'bar',
-          orientation: 'h',
-          marker: { color: 'rgba(255,255,255,0)' },
-          mode: 'lines',
-          line: { width: 0 },
-          hoverinfo: "none",
-          showlegend: false,
-        },
-        {
-          x: [9],
-          y: [2],
-          type: 'bar',
-          orientation: 'h',
-          showlegend: false,
-          mode: 'lines',
-          line: { width: 0 },
-          marker: {
-            color: 'rgb(97, 147, 201)',
-            opacity: 0.7,
-            line: {
-              color: 'rgba(53, 97, 164, 0)',
-              width: 2
-            }
-          },
-        },
-        {
-          x: [20],
-          y: [0],
-          type: 'bar',
-          orientation: 'h',
-          marker: { color: 'rgba(255,255,255,0)' },
-          mode: 'lines',
-          line: { width: 0 },
-          hoverinfo: "none",
-          showlegend: false,
-        },
-        {
-          x: [8],
-          y: [0],
-          type: 'bar',
-          orientation: 'h',
-          showlegend: false,
-          mode: 'lines',
-          line: { width: 0 },
-          marker: {
-            color: 'rgb(97, 147, 201)',
-            opacity: 0.7,
-            line: {
-              color: 'rgba(53, 97, 164, 0)',
-              width: 2
-            }
-          },
-        },
-        {
-          x: [24],
-          y: [-2],
-          type: 'bar',
-          orientation: 'h',
-          marker: { color: 'rgba(255,255,255,0)' },
-          mode: 'lines',
-          line: { width: 0 },
-          hoverinfo: "none",
-          showlegend: false,
-        },
-        {
-          x: [10],
-          y: [-2],
-          type: 'bar',
-          orientation: 'h',
-          showlegend: false,
-          mode: 'lines',
-          line: { width: 0 },
-          marker: {
-            color: 'rgb(97, 147, 201)',
-            opacity: 0.7,
-            line: {
-              color: 'rgba(53, 97, 164, 0)',
-              width: 2
-            }
-          },
-        },
-        ],
-        title: "Plot 1"
-      },
-      {
-        data: [{
-          id: 'b',
-          y: Array.from({ length: 15 }, () => Math.random() * 15),
-          type: 'scatter',
-          orientation: 'v',
-        }],
-        title: 'Plot 2',
-      },
       {
         data: [
           {
@@ -348,8 +140,142 @@ class Dashboard extends React.Component<{}, any> {
             fill: 'tonexty',
           },
         ],
-        title: 'Plot 3'
-      }
+        title: 'Plot 1'
+      },
+      {
+        data: [
+          {
+            x: Array.from({ length: 30 }, (x, i) => i),
+            y: Array.from({ length: 30 }, (x, i) => Math.random() * 1 + 5),
+            marker: {
+              color: 'rgb(242, 200, 110)',
+            },
+            width: 0.65,
+            type: 'bar',
+            displayModeBar: false,
+          },
+          {
+            x: Array.from({ length: 30 }, (x, i) => i),
+            y: Array.from({ length: 30 }, (x, i) => Math.random() * 4 + 20),
+            marker: {
+              color: 'rgb(234, 184, 57)',
+            },
+            width: 0.65,
+            type: 'bar',
+            displayModeBar: false,
+          },
+          {
+            x: Array.from({ length: 30 }, (x, i) => i),
+            y: Array.from({ length: 30 }, (x, i) => Math.random() * 11 + 55),
+            marker: {
+              color: 'rgb(239, 133, 60)',
+            },
+            width: 0.65,
+            type: 'bar',
+            displayModeBar: false,
+          },
+          {
+            x: Array.from({ length: 30 }, (x, i) => i),
+            y: Array.from({ length: 30 }, (x, i) => Math.random() * 16 + 80),
+            marker: {
+              color: 'rgb(226, 76, 66)',
+            },
+            width: 0.65,
+            type: 'bar',
+            displayModeBar: false,
+          }
+        ],
+        title: 'Plot 2',
+      },
+      {
+        data: [
+          {
+            x: Array.from({ length: 120 }, (x, i) => i),
+            y: Array.from({ length: 120 }, (x, i) => propy2[i] * 1 + Math.random() * 1 + 1),
+            line: {
+              color: 'rgb(101, 157, 86)',
+              width: 2.2,
+              dash: 'solid',
+              shape: 'linear',
+            },
+            type: 'scatter',
+            displayModeBar: false,
+            fill: 'tozeroy',  // tozeroy
+            fillcolor: 'rgba(101, 157, 86, 0.25)',
+          },
+          {
+            x: Array.from({ length: 120 }, (x, i) => i),
+            y: Array.from({ length: 120 }, (x, i) => propy2[i] * 1 + Math.random() * 1 + 8),
+            line: {
+              color: 'rgb(91, 150, 77)',
+              width: 2.2,
+              dash: 'solid',
+              shape: 'linear',
+            },
+            type: 'scatter',
+            displayModeBar: false,
+            fill: 'tozeroy',
+            fillcolor: 'rgba(91, 150, 77, 0.25)',
+          },
+          {
+            x: Array.from({ length: 120 }, (x, i) => i),
+            y: Array.from({ length: 120 }, (x, i) => propy2[i] * 9 + Math.random() * 3 + 13),
+            line: {
+              color: 'rgb(91, 150, 77)',
+              width: 2.2,
+              dash: 'solid',
+              shape: 'linear',
+            },
+            type: 'scatter',
+            displayModeBar: false,
+            fill: 'tozeroy',
+            fillcolor: 'rgba(91, 150, 77, 0.25)',
+          },
+          {
+            x: Array.from({ length: 120 }, (x, i) => i),
+            y: Array.from({ length: 120 }, (x, i) => propy2[i] * 18 + Math.random() * 3 + 18),
+            line: {
+              color: 'rgb(80, 134, 66)',
+              width: 2.2,
+              dash: 'solid',
+              shape: 'linear',
+            },
+            type: 'scatter',
+            displayModeBar: false,
+            fill: 'tozeroy',
+            fillcolor: 'rgba(80, 134, 66, 0.25)',
+          },
+          {
+            x: Array.from({ length: 120 }, (x, i) => i),
+            y: Array.from({ length: 120 }, (x, i) => -(propy2[i] * 1 + Math.random() * 1 + 8)),
+            line: {
+              color: 'rgb(30, 120, 193)',
+              width: 2.2,
+              dash: 'solid',
+              shape: 'linear',
+            },
+            type: 'scatter',
+            displayModeBar: false,
+            fill: 'tozeroy',
+            fillcolor: 'rgba(30, 120, 193, 0.25)',
+          },
+          {
+            x: Array.from({ length: 120 }, (x, i) => i),
+            y: Array.from({ length: 120 }, (x, i) => -(propy2[i] * 18 + Math.random() * 3 + 18)),
+            line: {
+              color: 'rgb(130, 181, 216)',
+              width: 2.2,
+              dash: 'solid',
+              shape: 'linear',
+            },
+            type: 'scatter',
+            displayModeBar: false,
+            fill: 'tozeroy',
+            fillcolor: 'rgba(130, 181, 216, 0.25)',
+          },
+        ],
+        title: 'Plot 3',
+      },
     ];
 
 
@@ -361,8 +287,8 @@ class Dashboard extends React.Component<{}, any> {
       if (this.state.checkboxIdToSelectedMap[id]) {
         this.setState({ show: true });
         let i = (Number(id.slice(-1)) - 1)
-        datalist[i]["grid_x"] = 4 * ((this.state.data.length) % 3)
-        datalist[i]["grid_y"] = 4 * Math.floor((this.state.data.length) / 3)
+        datalist[i]["grid_x"] = 6 * ((this.state.data.length) % 2)
+        datalist[i]["grid_y"] = 6 * Math.floor((this.state.data.length) / 2)
         this.state.data.push(datalist[i]);
       }
     });
@@ -383,7 +309,7 @@ class Dashboard extends React.Component<{}, any> {
           <Fragment>
             <GridLayout className="layout" cols={12} rowHeight={26} width={1400}>
               {this.state.data.map(({ title, grid_x, grid_y, data }, idx) => (
-                <div key={`grid-${idx}`} data-grid={{ x: grid_x, y: grid_y, w: 4, h: 10 }}>
+                <div key={`grid-${idx}`} data-grid={{ x: grid_x, y: grid_y, w: 6, h: 8 }}>
                   <Plt ref={this.state.children[idx]} data={data} title={title} />
                   <ReactResizeDetector handleWidth handleHeight onResize={() => this.state.children[idx].current.autoResize()} />
                 </div>
