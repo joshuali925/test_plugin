@@ -111,7 +111,8 @@ class Dashboard extends React.Component<{}, any> {
           <Fragment>
             <GridLayout className="layout" cols={12} rowHeight={26} width={1400}>
               {this.state.data.map(({ title, grid_x, grid_y, data, layout }, idx) => (
-                <div key={`grid-${idx}`} data-grid={{ x: grid_x, y: grid_y, w: 6, h: 9 }} style={{border: '1px solid #2a2c30', borderRadius: '2px'}}>
+                // <div key={`grid-${idx}`} data-grid={{ x: grid_x, y: grid_y, w: 6, h: 9 }} style={{border: '1px solid #2a2c30', borderRadius: '2px'}}>
+                <div key={`grid-${idx}`} data-grid={{ x: grid_x, y: grid_y, w: 6, h: 9 }} style={{border: '1px solid #202226', borderRadius: '2px'}}>
                   <Plt ref={this.state.children[idx]} data={data} layout={layout} title={title} />
                   <ReactResizeDetector handleWidth handleHeight onResize={() => this.state.children[idx].current.autoResize()} />
                 </div>

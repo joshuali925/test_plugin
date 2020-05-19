@@ -137,8 +137,8 @@ class Plt extends React.Component<{}, any> {
           onClick={(e) => this.showInputModal(e)}
           config={{ displayModeBar: false }}
           layout={{
-            plot_bgcolor: "rgb(30,31,36)",  // 26, 27, 32
-            paper_bgcolor: "rgb(30,31,36)",
+            plot_bgcolor: "rgb(20,22,25)",  // 30, 31, 36
+            paper_bgcolor: "rgb(20,22,25)",
             font: {
               color: "rgb(201,208,216)"
             },

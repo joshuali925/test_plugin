@@ -135,10 +135,10 @@ function Visualization(props) {
 
   function DataListVisualizer() {
     return (
-      <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" withPanel grow>
+      <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" withPanel grow style={{backgroundColor: 'black'}}>
         {list2.length ? (
           <EuiFlexGroup>
-            <EuiFlexItem>
+            <EuiFlexItem style={{border: '1px solid #202226', borderRadius: '2px' }}>
               <Plt width={600} height={400} type={plotType} orientation={plotOrientation} y={covidData[list2[0].content].y} title={list2[0].content} />
             </EuiFlexItem>
             <EuiFlexItem sytle={{ padding: 30 }}>
