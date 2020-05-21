@@ -19,7 +19,7 @@ class Dashboard extends React.Component<{}, any> {
       isModalVisible: false,
       checkboxIdToSelectedMap: {},
       data: [],
-      mouseHover: [false, false, false],
+      mouseHover: [],
       isDraggable: false,
       mouseDown: false,
     };
@@ -105,6 +105,7 @@ class Dashboard extends React.Component<{}, any> {
   render() {
     this.state.data.forEach(element => {
       this.state.children.push(React.createRef())
+      this.state.mouseHover.push(false)
     });
     return (
       <Fragment>
@@ -113,23 +114,25 @@ class Dashboard extends React.Component<{}, any> {
 
         {this.state.show ? (
           <Fragment>
-            <GridLayout className="layout" cols={12} rowHeight={26} width={1400} isDraggable={this.state.isDraggable}>
+            <GridLayout className="layout" cols={12} rowHeight={26} width={1375} isDraggable={this.state.isDraggable}>
               {this.state.data.map(({ title, grid_x, grid_y, data, layout }, idx) => (
                 // <div key={`grid-${idx}`} data-grid={{ x: grid_x, y: grid_y, w: 6, h: 9 }} style={{border: '1px solid #2a2c30', borderRadius: '2px'}}>
                 <div key={`grid-${idx}`} data-grid={{ x: grid_x, y: grid_y, w: 6, h: 9 }} style={{ border: '1px solid #202226', borderRadius: '2px' }}>
                   <div onMouseEnter={() => {
-                    const newMouseHover = [false, false, false];
+                    const newMouseHover = Array.from({ length: this.state.data.length }, (v, i) => false);
                     newMouseHover[idx] = true;
                     this.setState({ isDraggable: true, mouseHover: newMouseHover })
                   }} onMouseLeave={() => {
-                    this.setState({mouseHover: [false,false,false]})
+                    this.setState({ mouseHover: Array.from({ length: this.state.data.length }, (v, i) => false) })
                     if (!this.state.mouseDown)
                       this.setState({ isDraggable: false })
                   }} onMouseDown={() => {
                     this.setState({ mouseDown: true })
                   }} onMouseUp={() => {
                     this.setState({ mouseDown: false })
-                  }} style={{ backgroundColor: { false: '#141619', true: '#202226' }[this.state.mouseHover[idx]], textAlign: 'center', paddingTop: 7, paddingBottom: 7, fontSize: 14 }}>{title}</div>
+                  }} style={{
+                    backgroundColor: { false: '#141619', true: '#202226' }[this.state.mouseHover[idx]], textAlign: 'center', paddingTop: 7, paddingBottom: 7, fontSize: 14
+                  }}>{title}</div>
                   <Plt ref={this.state.children[idx]} data={data} layout={layout} title={title} />
                   <ReactResizeDetector handleWidth handleHeight onResize={() => this.state.children[idx].current.autoResize()} />
                 </div>
