@@ -123,15 +123,16 @@ class Dashboard extends React.Component<{}, any> {
                     newMouseHover[idx] = true;
                     this.setState({ isDraggable: true, mouseHover: newMouseHover })
                   }} onMouseLeave={() => {
-                    this.setState({ mouseHover: Array.from({ length: this.state.data.length }, (v, i) => false) })
-                    if (!this.state.mouseDown)
+                    if (!this.state.mouseDown) {
+                      this.setState({ mouseHover: Array.from({ length: this.state.data.length }, (v, i) => false) })
                       this.setState({ isDraggable: false })
+                    }
                   }} onMouseDown={() => {
                     this.setState({ mouseDown: true })
                   }} onMouseUp={() => {
                     this.setState({ mouseDown: false })
                   }} style={{
-                    backgroundColor: { false: '#141619', true: '#202226' }[this.state.mouseHover[idx]], textAlign: 'center', paddingTop: 7, paddingBottom: 7, fontSize: 14
+                    backgroundColor: { false: '#141619', true: '#202226' }[this.state.mouseHover[idx]], textAlign: 'center', fontSize: 10
                   }}>{title}</div>
                   <Plt ref={this.state.children[idx]} data={data} layout={layout} title={title} />
                   <ReactResizeDetector handleWidth handleHeight onResize={() => this.state.children[idx].current.autoResize()} />
