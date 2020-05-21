@@ -145,17 +145,17 @@ class Plt extends React.Component<{}, any> {
             height: this.props.height,
             width: this.props.width,
             autosize: true,
-            title: {
-              text: this.props.title,
-              font: {
-                size: 13,
-              },
-            },
+            // title: {
+            //   text: this.props.title,
+            //   font: {
+            //     size: 13,
+            //   },
+            // },
             margin: {
               l: 40,
               r: 30,
               b: 30,
-              t: 40,
+              t: 10,
               pad: 4
             },
             annotations: this.state.annotations,
@@ -168,7 +168,7 @@ class Plt extends React.Component<{}, any> {
             hovermode: 'closest',
             xaxis: {
               showgrid: true,
-              fixedrange: true,
+              // fixedrange: true,
               zeroline: false,
               type: 'auto',
               gridcolor: 'rgb(60,61,64)',
@@ -176,7 +176,7 @@ class Plt extends React.Component<{}, any> {
             },
             yaxis: {
               showgrid: true,
-              fixedrange: true,
+              // fixedrange: true,
               zeroline: false,
               type: 'linear',
               gridcolor: 'rgb(60,61,64)',
@@ -184,7 +184,7 @@ class Plt extends React.Component<{}, any> {
             },
             zaxis: {
               showgrid: true,
-              fixedrange: true,
+              // fixedrange: true,
               zeroline: false,
               type: 'linear',
               gridcolor: 'rgb(60,61,64)',

@@ -7,7 +7,8 @@ import { EuiKeyPadMenuItem } from '@elastic/eui';
 import { EuiOverlayMask, EuiModal, EuiModalHeader, EuiModalHeaderTitle, EuiModalBody, EuiFieldText, EuiModalFooter, EuiButtonEmpty, EuiButton } from '@elastic/eui';
 import { htmlIdGenerator } from '@elastic/eui';
 import { EuiCheckboxGroup } from '@elastic/eui';
-import {datalist} from '../data/dashboardData.js'
+import { datalist } from '../data/dashboardData.js'
+import { PreviousMap } from 'postcss';
 
 class Dashboard extends React.Component<{}, any> {
   constructor(props) {
@@ -17,7 +18,10 @@ class Dashboard extends React.Component<{}, any> {
       show: false,
       isModalVisible: false,
       checkboxIdToSelectedMap: {},
-      data: []
+      data: [],
+      mouseHover: [false, false, false],
+      isDraggable: false,
+      mouseDown: false,
     };
   }
 
@@ -84,7 +88,7 @@ class Dashboard extends React.Component<{}, any> {
   save() {
     this.setState({ isModalVisible: false });
     this.state.data.length = 0;
-    
+
     Object.keys(this.state.checkboxIdToSelectedMap).sort().forEach(id => {
       if (this.state.checkboxIdToSelectedMap[id]) {
         this.setState({ show: true });
@@ -109,10 +113,23 @@ class Dashboard extends React.Component<{}, any> {
 
         {this.state.show ? (
           <Fragment>
-            <GridLayout className="layout" cols={12} rowHeight={26} width={1400}>
+            <GridLayout className="layout" cols={12} rowHeight={26} width={1400} isDraggable={this.state.isDraggable}>
               {this.state.data.map(({ title, grid_x, grid_y, data, layout }, idx) => (
                 // <div key={`grid-${idx}`} data-grid={{ x: grid_x, y: grid_y, w: 6, h: 9 }} style={{border: '1px solid #2a2c30', borderRadius: '2px'}}>
-                <div key={`grid-${idx}`} data-grid={{ x: grid_x, y: grid_y, w: 6, h: 9 }} style={{border: '1px solid #202226', borderRadius: '2px'}}>
+                <div key={`grid-${idx}`} data-grid={{ x: grid_x, y: grid_y, w: 6, h: 9 }} style={{ border: '1px solid #202226', borderRadius: '2px' }}>
+                  <div onMouseEnter={() => {
+                    const newMouseHover = [false, false, false];
+                    newMouseHover[idx] = true;
+                    this.setState({ isDraggable: true, mouseHover: newMouseHover })
+                  }} onMouseLeave={() => {
+                    this.setState({mouseHover: [false,false,false]})
+                    if (!this.state.mouseDown)
+                      this.setState({ isDraggable: false })
+                  }} onMouseDown={() => {
+                    this.setState({ mouseDown: true })
+                  }} onMouseUp={() => {
+                    this.setState({ mouseDown: false })
+                  }} style={{ backgroundColor: { false: '#141619', true: '#202226' }[this.state.mouseHover[idx]], textAlign: 'center', paddingTop: 7, paddingBottom: 7, fontSize: 14 }}>{title}</div>
                   <Plt ref={this.state.children[idx]} data={data} layout={layout} title={title} />
                   <ReactResizeDetector handleWidth handleHeight onResize={() => this.state.children[idx].current.autoResize()} />
                 </div>
