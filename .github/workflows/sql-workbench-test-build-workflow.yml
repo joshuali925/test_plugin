@@ -32,11 +32,19 @@ jobs:
           repository: opensearch-project/OpenSearch-Dashboards
           ref: ${{ env.OPENSEARCH_DASHBOARDS_VERSION }}
           path: OpenSearch-Dashboards
+
+      - name: Checkout workbench OpenSearch Dashboards plugin
+        uses: actions/checkout@v2
+        with:
+          path: OpenSearch-Dashboards/plugins/dashboards-query-workbench
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version-file: './OpenSearch-Dashboards/.nvmrc'
           registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
+          cache-dependency-path: OpenSearch-Dashboards/plugins/dashboards-query-workbench/yarn.lock
       - name: Install Yarn
         # Need to use bash to avoid having a windows/linux specific step
         shell: bash
@@ -46,11 +54,6 @@ jobs:
           npm i -g yarn@$YARN_VERSION
       - run: node -v
       - run: yarn -v
-
-      - name: Checkout workbench OpenSearch Dashboards plugin
-        uses: actions/checkout@v2
-        with:
-          path: OpenSearch-Dashboards/plugins/dashboards-query-workbench
 
       - run: pwd
       - run: ls OpenSearch-Dashboards/plugins/dashboards-query-workbench
@@ -66,11 +69,10 @@ jobs:
       #     yarn test:jest --coverage
 
       - name: TestCoverage
-        id: testCoverage
         uses: anuraag016/Jest-Coverage-Diff@master
         with:
           fullCoverageDiff: true
-          runCommand: "cd OpenSearch-Dashboards/plugins/dashboards-query-workbench && yarn test:jest --coverage --collectCoverage=true --coverageDirectory='./' --coverageReporters='json-summary'"
+          runCommand: "cd OpenSearch-Dashboards/plugins/dashboards-query-workbench && yarn test:jest --coverage --collectCoverage=true --coverageDirectory='../../../' --coverageReporters='json-summary'"
           delta: 0.5
           # afterSwitchCommand: "yarn osd bootstrap"
 
@@ -79,7 +81,15 @@ jobs:
         uses: ArtiomTr/jest-coverage-report-action@v2.2.3
         with:
           working-directory: /home/runner/work/test_plugin/test_plugin/OpenSearch-Dashboards/plugins/dashboards-query-workbench
-          test-script: yarn test:jest --coverage --coverageReporters="json-summary"
+          test-script: pwd
+          package-manager: yarn
+          annotations: none
+
+      - name: Jest coverage report
+        if: always()
+        uses: ArtiomTr/jest-coverage-report-action@v2.2.3
+        with:
+          test-script: pwd
           package-manager: yarn
           annotations: none
 
