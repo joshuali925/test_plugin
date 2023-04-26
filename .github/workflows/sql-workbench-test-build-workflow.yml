@@ -44,8 +44,6 @@ jobs:
         with:
           node-version-file: './OpenSearch-Dashboards/.nvmrc'
           registry-url: 'https://registry.npmjs.org'
-          cache: 'yarn'
-          cache-dependency-path: OpenSearch-Dashboards/yarn.lock
       - name: Install Yarn
         # Need to use bash to avoid having a windows/linux specific step
         shell: bash
@@ -59,10 +57,24 @@ jobs:
       - run: pwd
       - run: ls OpenSearch-Dashboards/plugins/dashboards-query-workbench
 
+      - name: Cache
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: OpenSearch-Dashboards/plugins/dashboards-query-workbench/node_modules
+          key: ${{ runner.os }}-cache
+
       - name: Bootstrap plugin/opensearch-dashboards
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           cd OpenSearch-Dashboards/plugins/dashboards-query-workbench
           yarn osd bootstrap
+
+      - name: Build Artifact
+        run: |
+          cd OpenSearch-Dashboards/plugins/dashboards-query-workbench
+          yarn build
+          mv ./build/*.zip ./build/${{ env.PLUGIN_NAME }}-${{ env.OPENSEARCH_PLUGIN_VERSION }}.zip
 
       # - name: Test
       #   run: |
@@ -76,20 +88,8 @@ jobs:
           directory: OpenSearch-Dashboards/plugins/dashboards-query-workbench
           runCommand: "yarn test:jest --coverage --collectCoverage=true --coverageDirectory='../../../' --coverageReporters='json-summary'"
           delta: 0.5
-          # afterSwitchCommand: "yarn osd bootstrap"
+          afterSwitchCommand: "yarn osd bootstrap"
 
-      - name: Upload coverage
-        if: ${{ always() && matrix.os == 'ubuntu-latest' }}
-        uses: codecov/codecov-action@v3
-        with:
-          flags: dashboards-query-workbench
-          directory: OpenSearch-Dashboards/plugins/dashboards-query-workbench
-          token: ${{ secrets.CODECOV_TOKEN }}
-      - name: Build Artifact
-        run: |
-          cd OpenSearch-Dashboards/plugins/dashboards-query-workbench
-          yarn build
-          mv ./build/*.zip ./build/${{ env.PLUGIN_NAME }}-${{ env.OPENSEARCH_PLUGIN_VERSION }}.zip
       - name: Upload Artifact
         if: always()
         uses: actions/upload-artifact@v1 # can't update to v3 because upload fails
