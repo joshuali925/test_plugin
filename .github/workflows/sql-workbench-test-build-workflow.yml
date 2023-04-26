@@ -54,10 +54,20 @@ jobs:
         run: |
           cd OpenSearch-Dashboards/plugins/dashboards-query-workbench
           yarn osd bootstrap
-      - name: Test
-        run: |
-          cd OpenSearch-Dashboards/plugins/dashboards-query-workbench
-          yarn test:jest --coverage
+
+      # - name: Test
+      #   run: |
+      #     cd OpenSearch-Dashboards/plugins/dashboards-query-workbench
+      #     yarn test:jest --coverage
+
+      - name: Jest coverage report
+        uses: ArtiomTr/jest-coverage-report-action@v2.2.3
+        with:
+          working-directory: OpenSearch-Dashboards/plugins/dashboards-query-workbench
+          test-script: yarn test:jest --coverage
+          package-manager: yarn
+          annotations: none
+
       - name: Upload coverage
         if: ${{ always() && matrix.os == 'ubuntu-latest' }}
         uses: codecov/codecov-action@v3
