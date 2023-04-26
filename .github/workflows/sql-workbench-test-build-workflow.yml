@@ -13,6 +13,7 @@ env:
   PLUGIN_NAME: dashboards-query-workbench
   OPENSEARCH_VERSION: 'main'
   OPENSEARCH_PLUGIN_VERSION: 2.4.0.0
+  ACTIONS_STEP_DEBUG: true
 
 jobs:
   tests:
@@ -73,7 +74,7 @@ jobs:
         with:
           fullCoverageDiff: true
           directory: OpenSearch-Dashboards/plugins/dashboards-query-workbench
-          runCommand: "yarn test:jest --coverage --collectCoverage=true --coverageReporters='json-summary'"
+          runCommand: "yarn test:jest --coverage --collectCoverage=true --coverageDirectory='../../../' --coverageReporters='json-summary'"
           delta: 0.5
           # afterSwitchCommand: "yarn osd bootstrap"
 
