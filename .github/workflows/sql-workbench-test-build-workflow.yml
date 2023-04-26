@@ -44,7 +44,7 @@ jobs:
           node-version-file: './OpenSearch-Dashboards/.nvmrc'
           registry-url: 'https://registry.npmjs.org'
           cache: 'yarn'
-          cache-dependency-path: OpenSearch-Dashboards/plugins/dashboards-query-workbench/yarn.lock
+          cache-dependency-path: OpenSearch-Dashboards/yarn.lock
       - name: Install Yarn
         # Need to use bash to avoid having a windows/linux specific step
         shell: bash
@@ -69,29 +69,13 @@ jobs:
       #     yarn test:jest --coverage
 
       - name: TestCoverage
-        uses: anuraag016/Jest-Coverage-Diff@master
+        uses: joshuali925/Jest-Coverage-Diff@master
         with:
           fullCoverageDiff: true
-          runCommand: "cd OpenSearch-Dashboards/plugins/dashboards-query-workbench && yarn test:jest --coverage --collectCoverage=true --coverageDirectory='../../../' --coverageReporters='json-summary'"
+          directory: OpenSearch-Dashboards/plugins/dashboards-query-workbench
+          runCommand: "yarn test:jest --coverage --collectCoverage=true --coverageReporters='json-summary'"
           delta: 0.5
           # afterSwitchCommand: "yarn osd bootstrap"
-
-      - name: Jest coverage report
-        if: always()
-        uses: ArtiomTr/jest-coverage-report-action@v2.2.3
-        with:
-          working-directory: /home/runner/work/test_plugin/test_plugin/OpenSearch-Dashboards/plugins/dashboards-query-workbench
-          test-script: pwd
-          package-manager: yarn
-          annotations: none
-
-      - name: Jest coverage report
-        if: always()
-        uses: ArtiomTr/jest-coverage-report-action@v2.2.3
-        with:
-          test-script: pwd
-          package-manager: yarn
-          annotations: none
 
       - name: Upload coverage
         if: ${{ always() && matrix.os == 'ubuntu-latest' }}
