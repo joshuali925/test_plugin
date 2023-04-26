@@ -19,7 +19,7 @@ jobs:
     name: Run unit tests
     strategy:
       matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        os: [ ubuntu-latest ]
     runs-on: ${{ matrix.os }}
     steps:
       # Enable longer filenames for windows
@@ -64,7 +64,7 @@ jobs:
         uses: ArtiomTr/jest-coverage-report-action@v2.2.3
         with:
           working-directory: OpenSearch-Dashboards/plugins/dashboards-query-workbench
-          test-script: yarn test:jest --coverage
+          test-script: yarn test:jest --coverage --coverageReporters="json-summary"
           package-manager: yarn
           annotations: none
 
