@@ -46,10 +46,15 @@ jobs:
           npm i -g yarn@$YARN_VERSION
       - run: node -v
       - run: yarn -v
+
       - name: Checkout workbench OpenSearch Dashboards plugin
         uses: actions/checkout@v2
         with:
           path: OpenSearch-Dashboards/plugins/dashboards-query-workbench
+
+      - run: pwd
+      - run: ls OpenSearch-Dashboards/plugins/dashboards-query-workbench
+
       - name: Bootstrap plugin/opensearch-dashboards
         run: |
           cd OpenSearch-Dashboards/plugins/dashboards-query-workbench
@@ -60,18 +65,19 @@ jobs:
       #     cd OpenSearch-Dashboards/plugins/dashboards-query-workbench
       #     yarn test:jest --coverage
 
-      - name: TestCoverage
-        id: testCoverage
-        uses: anuraag016/Jest-Coverage-Diff@master
-        with:
-          fullCoverageDiff: true
-          runCommand: "yarn test:jest --coverage --collectCoverage=true --coverageReporters='json-summary'"
-          delta: 0.5
-          afterSwitchCommand: "yarn osd bootstrap"
+      # - name: TestCoverage
+      #   id: testCoverage
+      #   uses: anuraag016/Jest-Coverage-Diff@master
+      #   with:
+      #     fullCoverageDiff: true
+      #     runCommand: "yarn test:jest --coverage --collectCoverage=true --coverageReporters='json-summary'"
+      #     delta: 0.5
+      #     afterSwitchCommand: "yarn osd bootstrap"
 
       - name: Jest coverage report
         uses: ArtiomTr/jest-coverage-report-action@v2.2.3
         with:
+          working-directory: OpenSearch-Dashboards/plugins/dashboards-query-workbench
           test-script: yarn test:jest --coverage --coverageReporters="json-summary"
           package-manager: yarn
           annotations: none
