@@ -70,23 +70,25 @@ jobs:
           cd OpenSearch-Dashboards/plugins/dashboards-query-workbench
           yarn osd bootstrap
 
+      - name: Test
+        if: github.event_name == 'push'
+        run: |
+          cd OpenSearch-Dashboards/plugins/dashboards-query-workbench
+          yarn test:jest --coverage
+
       - name: Build Artifact
         run: |
           cd OpenSearch-Dashboards/plugins/dashboards-query-workbench
           yarn build
           mv ./build/*.zip ./build/${{ env.PLUGIN_NAME }}-${{ env.OPENSEARCH_PLUGIN_VERSION }}.zip
 
-      # - name: Test
-      #   run: |
-      #     cd OpenSearch-Dashboards/plugins/dashboards-query-workbench
-      #     yarn test:jest --coverage
-
       - name: TestCoverage
+        if: github.event_name == 'pull_request'
         uses: joshuali925/Jest-Coverage-Diff@master
         with:
           fullCoverageDiff: true
           directory: OpenSearch-Dashboards/plugins/dashboards-query-workbench
-          runCommand: "yarn test:jest --coverage --collectCoverage=true --coverageDirectory='../../../' --coverageReporters='json-summary'"
+          runCommand: "yarn test:jest --coverage --collectCoverage=true --coverageDirectory='./' --coverageReporters='json-summary'"
           delta: 0.5
           afterSwitchCommand: "yarn osd bootstrap"
 
